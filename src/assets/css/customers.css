@@ -1,0 +1,101 @@
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff !important;
+  border-radius: 8px;
+  height: 48px;
+  padding: 0 16px;
+}
+
+.search input {
+  outline: 0 !important;
+  border: 0 !important;
+}
+
+.search input::placeholder {
+  color: #b5b5b5;
+}
+
+.cutomer-home .modal-tabs .radio {
+  width: 112px;
+  height: 96px;
+}
+
+.space-type {
+  flex-wrap: wrap;
+}
+
+.cutomer-home .button label {
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  width: max-content;
+  background-color: white !important;
+}
+
+.cutomer-home .button input[type='radio']:checked+label svg path {
+  fill: white;
+}
+
+.horizontal-card {
+  background-color: white !important;
+  border-radius: 8px;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05);
+}
+
+.customer-home-filter .modal-content {
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+}
+
+.cutomer-home-filter input[type='radio']:not(:checked)+label {
+  background-color: #f1f6f7 !important;
+}
+
+.check-customer[type='checkbox'] {
+  visibility: hidden;
+}
+
+.cutomer-home-filter input[type='checkbox']+label {
+  position: relative;
+  background-color: #f1f6f7 !important;
+}
+
+.form-check-input[type='checkbox']:checked+label {
+  padding-right: 30px !important;
+}
+
+.form-check-input[type='checkbox']:checked+label::after {
+  content: '';
+  width: 30px;
+  height: 30px;
+  background-image: url('../images/icons/checked.png');
+  top: 15px;
+  right: -7px;
+  position: absolute;
+  display: inline-block;
+  background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 1200px) {
+  .horizontal-card .horizontal-card-img {
+    border-radius: 8px 0 0 8px !important;
+    object-fit: cover;
+    height: 100%;
+    max-height: 269px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .horizontal-card .horizontal-card-img {
+    border-radius: 8px 8px 0 0 !important;
+    height: 223px;
+    /* max-height: 223px; */
+    /* height: clamp(223px, 100%, 223px); */
+
+  }
+}

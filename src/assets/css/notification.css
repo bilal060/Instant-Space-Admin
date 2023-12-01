@@ -1,0 +1,136 @@
+.notification-bar {
+  height: 80px !important;
+  width: 100%;
+  background-color: #ffffff !important;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05) !important;
+  border-radius: 8px !important;
+  -webkit-border-radius: 8px !important;
+  -moz-border-radius: 8px !important;
+  -ms-border-radius: 8px !important;
+  -o-border-radius: 8px !important;
+}
+.font-700 {
+  font-weight: 700;
+}
+.font-14-20 {
+  font-size: 14px;
+  line-height: 20px;
+  color: #171d25;
+  font-weight: 500 !important;
+}
+.status-paid {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 100%;
+  text-align: center;
+  color: #169401;
+  border: 1px solid #169401;
+  padding: 8px 12px !important;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  cursor: pointer;
+  background-color: rgba(22, 148, 1, 0.1);
+}
+.status-notpaid {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 100%;
+  text-align: center;
+  color: #ff5757;
+  border: 1px solid #ff5757;
+  padding: 8px 12px !important;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  cursor: pointer;
+  background-color: rgba(255, 87, 87, 0.1);
+}
+.separator {
+  display: flex;
+  align-items: center;
+}
+
+.separator .line {
+  height: 1px;
+  flex: 1;
+  background-color: #e7e6e9;
+}
+
+.separator p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 100%;
+  color: #7d8695;
+  padding: 8px 12px;
+  background-color: #f1f1f1;
+  border-radius: 5px !important;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -ms-border-radius: 5px !important;
+  -o-border-radius: 5px !important;
+}
+
+@media (min-width: 575.98px) {
+  .notification-bar {
+    min-width: 500px !important;
+    overflow: auto;
+  }
+  p-0 {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+.drop-input option {
+  background-color: #169401 !important;
+  color: red;
+}
+.drops-option {
+  color: red;
+}
+.notification-bar.selected-row {
+  background-color: #e2e2e2 !important;
+}
+/* Add this CSS for card design */
+.card-notification {
+  width: 342px;
+  height: 182px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  position: absolute !important;
+  z-index: 999;
+  top: 50%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+}
+
+.card-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card-button svg {
+  margin-right: 5px;
+}
+.cards-links {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+}

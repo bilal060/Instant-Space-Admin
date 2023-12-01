@@ -1,0 +1,30 @@
+.field-container {
+  border: 1px solid #e7e6e9;
+  border-radius: 8px;
+  background-color: #fff !important;
+  margin-bottom: 4px !important;
+}
+
+.field-container>div {
+  height: 56px;
+}
+
+.custom-field {
+  border: none !important;
+  background-color: #fff !important;
+}
+
+.mobile {
+  border: none !important;
+  width: 100% !important;
+}
+
+.dotted {
+  border: 1.5px dashed rgba(0, 0, 0, 0.1);
+  background-color: #f1f6f7 !important;
+  cursor: pointer;
+}
+
+.rounded-8px {
+  border-radius: 8px !important;
+}

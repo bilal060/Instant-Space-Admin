@@ -1,0 +1,33 @@
+.bookings-radio-container {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 10px !important;
+  align-items: center !important;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+.radio-inactive {
+  background: var(--Button-G, #F1F6F7) !important;
+  border-radius: 6px;
+  color: var(--Body-Text, #7D8695) !important;
+  width: 100%;
+}
+
+.radio-active {
+  background: linear-gradient(90deg, #fb7c5f 1.2%, #df525b 100%);
+  border-radius: 6px;
+  color: white;
+  width: 100%;
+}
+
+.svg-inactive {
+  fill: black;
+}
+
+.radio-active path {
+  fill: unset !important;
+  stroke: white;
+}

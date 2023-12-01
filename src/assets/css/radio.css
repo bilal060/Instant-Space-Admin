@@ -1,0 +1,35 @@
+.button input[type='radio'] {
+  opacity: 0.011;
+  z-index: 100;
+}
+
+.button input[type='radio']:checked + label {
+  background: #df525b;
+  color: white;
+}
+
+.button label {
+  background: #f1f6f7;
+  height: 40px !important;
+  padding: 6px 16px !important;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 90;
+  line-height: 1.8em;
+  color: var(--grey);
+}
+
+@media screen and (min-width: 401px) {
+  .custom-button-font {
+    font-size: 14px !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .custom-button-font {
+    font-size: 10px !important;
+  }
+}
+.text-primary {
+  color: white !important;
+}

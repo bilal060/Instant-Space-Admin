@@ -1,0 +1,11 @@
+.cutom-btn {
+  background-color: var(--primary);
+  color: #fff;
+  font-size: 15px;
+  outline: var(--primary);
+  border: none;
+}
+
+.cutom-btn:hover {
+  background-color: var(--primary);
+}

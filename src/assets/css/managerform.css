@@ -1,0 +1,294 @@
+.text-grey {
+  color: var(--grey) !important;
+}
+
+.text-primary-blue {
+  color: var(--primary) !important;
+}
+
+.account-setting-card {
+  background: #ffffff;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 35px 24px;
+  border: 0 !important;
+}
+
+.account-setting .link {
+  color: var(--grey) !important;
+  text-decoration: none !important;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 11px 17px !important;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.border-0 {
+  border: 0 !important;
+}
+
+.account-setting .link.active {
+  background: rgba(255, 87, 87, 0.1);
+  border-radius: 8px;
+  padding: 11px 17px !important;
+  color: var(--primary) !important;
+  font-weight: 700;
+}
+
+.account-setting .link.active svg path {
+  fill: var(--primary) !important;
+}
+
+/* privacy policy */
+.privacy-policy .paragraph {
+  height: 672px;
+  overflow-y: auto;
+  color: var(--grey);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0;
+}
+
+/* faqs */
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f8f8;
+  border-radius: 8px;
+  height: 48px;
+  padding: 0 16px;
+}
+
+.search input {
+  outline: 0 !important;
+  border: 0 !important;
+}
+
+.accordion-item {
+  border-radius: 0 !important;
+  border: 0 !important;
+}
+
+.accordion-item .accordion-button {
+  border-radius: 0 !important;
+  border: 1px solid #e7e6e9 !important;
+  border-width: 0 0 1px 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: #171d25;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  padding: 16px 0;
+}
+
+.accordion-item .accordion-body {
+  border-bottom: 1px solid #e7e6e9 !important;
+  color: var(--grey);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: var(--bs-accordion-btn-icon) !important;
+}
+
+.accordion-button:not(.collapsed) {
+  color: var(--primary) !important;
+  font-weight: 700;
+}
+
+.h-fit-content {
+  height: fit-content !important;
+}
+
+/* change password  */
+.input-style {
+  border: 1px solid #e7e6e9;
+  border-radius: 8px;
+  height: 56px !important;
+  outline: 0 !important;
+  font-size: 18px;
+}
+
+.input-textarea-style {
+  border: 1px solid #e7e6e9;
+  border-radius: 8px;
+  outline: 0 !important;
+  font-size: 18px;
+}
+
+/* input[type="date"] {
+    background-color: white;
+    background-image: url("../images/icons/calender.svg") !important;
+    background-position: 10px 18px !important;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px !important;
+} */
+
+input[type='tel'] {
+  background-color: white;
+  background-image: url('../images/icons/phone.svg') !important;
+  background-position: 10px 18px !important;
+  background-repeat: no-repeat !important;
+  padding-left: 90px !important;
+}
+
+input[type='number'] {
+  background-color: white;
+  /* background-image: url("../images/icons/otp.svg") !important; */
+  /* background-position: 10px 18px !important; */
+  /* background-repeat: no-repeat; */
+  /* padding: 12px 20px 12px 40px; */
+}
+
+input[type='password'] {
+  background-color: white;
+  /* background-image: url("../images/icons/lock.svg") !important; */
+  /* background-position: 10px 18px !important; */
+  /* background-repeat: no-repeat; */
+  /* padding: 12px 20px 12px 40px; */
+}
+
+select.language {
+  background-color: white;
+  background-image: url('../images/icons/language.svg') !important;
+  background-position: 10px 18px !important;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.account-setting input,
+select {
+  /* border: 1px solid #f1f6f7 !important; */
+  border-radius: 8px;
+  /* height: 56px; */
+  height: 40px;
+  outline: 0 !important;
+  font-size: 18px !important;
+}
+
+.react-tel-input .flag-dropdown {
+  left: 40px;
+}
+
+.btn-blue {
+  background: var(--color, linear-gradient(90deg, #f9785e 0%, #e1565b 100%)) !important;
+  font-weight: 700;
+  border-radius: 8px !important;
+  height: 56px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  border: 0;
+}
+
+.btn-orange-outline {
+  background: rgba(255, 87, 87, 0.1) !important;
+  border: 1px solid var(--primary);
+  border-radius: 8px;
+  border-radius: 8px !important;
+  font-weight: 700;
+  height: 56px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary) !important;
+}
+
+.css-13cymwt-control,
+.css-13cymwt-contro {
+  border: 1px solid #e7e6e9 !important;
+  height: 58px;
+  border-radius: 8px !important;
+  background-color: #fff !important;
+  outline: none !important;
+}
+
+.css-t3ipsp-control,
+.css-t3ipsp-control:focus,
+.css-t3ipsp-control:hover {
+  height: 56px;
+  border-radius: 8px !important;
+  background-color: #fff !important;
+  border: 1px solid #e7e6e9 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.location {
+  display: flex !important;
+  height: 56px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e7e6e9 !important;
+}
+
+.p-39px-37px {
+  padding: 39px 37px;
+}
+
+/* Example CSS */
+.placesAutocomplete {
+  /* Style for the entire component */
+  width: 300px;
+}
+
+.placesAutocomplete__input {
+  /* Style for the input field */
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.placesAutocomplete__autocomplete-container {
+  /* Style for the dropdown container */
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.placesAutocomplete__suggestion {
+  /* Style for each suggestion in the dropdown */
+  padding: 10px;
+  cursor: pointer;
+}
+
+.placesAutocomplete__suggestions-container {
+  /* Style for the entire dropdown menu */
+  border: 1px solid #ccc;
+}
+
+.add-new-space .radio-inactive {
+  border-radius: 6px;
+  background: #f4f4f4;
+}
+
+.add-new-space :is(.radio-inactive, .radio-active) {
+  width: 162px !important;
+}
+
+.add-new-space .register-form-space {
+  width: max-content !important;
+  margin: 0 !important;
+}
+
+@media screen and (max-width: 576px) {
+  .add-new-space .register-form-space {
+    width: max-content !important;
+  }
+}
