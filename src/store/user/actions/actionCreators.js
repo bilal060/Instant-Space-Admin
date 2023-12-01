@@ -191,6 +191,20 @@ export const deleteManager = (userId, managerId, handleClose) => (dispatch) => {
       console.log(error.response.data);
     });
 };
+
+export const UpdateUserStatus = (userId, token, data, filterBy, page) => (dispatch) => {
+  Axios.patch(`users/changeUserStatus/${userId}`, data, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then(() => {
+      dispatch(getAllUsers(token, page, filterBy));
+    })
+    .catch((error) => {
+      Toast.error(error.response.data.message);
+      console.log(error.response.data);
+    });
+};
+
 export const getPayments =
   (id, token, page = 1) =>
   (dispatch) => {

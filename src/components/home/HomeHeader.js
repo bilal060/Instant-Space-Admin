@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../assets/css/responsive.css';
 import { Button, Col, Row } from 'react-bootstrap';
 import MyDropDown from '../../pages/MyDropDown';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { getAllUsers } from '../../store/user/actions/actionCreators';
 export default function HomeHeader(props) {
-  const { setFilterBy, filterBy, heading } = props;
+  const { page, setFilterBy, filterBy, heading, short } = props;
+  const token = useSelector((state) => state.user.token);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const filterUsersHandler = (filterBy) => {
     setFilterBy(filterBy);
   };
+  useEffect(() => {
+    dispatch(getAllUsers(token, page, filterBy));
+  }, [filterBy, dispatch, page, token]);
 
   const filterableCategories = [
     {
@@ -43,16 +49,19 @@ export default function HomeHeader(props) {
             selectedValue={filterBy}
             onChange={filterUsersHandler}
             labelName="Select"
+            all={false}
           />
 
-          <Button
-            onClick={() => {
-              navigate('/dashboard/bookings');
-            }}
-            variant="primary"
-            className="booking-btn height-40px">
-            View All
-          </Button>
+          {short && (
+            <Button
+              onClick={() => {
+                navigate('/dashboard/users');
+              }}
+              variant="primary"
+              className="booking-btn height-40px">
+              View All
+            </Button>
+          )}
         </Col>
       </Row>
 

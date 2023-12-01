@@ -6,11 +6,11 @@ import Cancel from '../../assets/images/icons/cancelpayment.svg';
 import Payment from '../../assets/images/icons/paidbooking.svg';
 import Total from '../../assets/images/icons/total.svg';
 import '../../assets/css/dashboard-misc.css';
-import BookingTable from './BookingTable';
 import { useDispatch, useSelector } from 'react-redux';
 import MyDropDown from '../../pages/MyDropDown';
 import DatePicker from 'react-multi-date-picker';
 import { getAllBookings } from '../../store/booking/actions/actionCreators';
+import BookingTable from '../home/BookingTable';
 
 const BookingMain = () => {
   const dispatch = useDispatch();
@@ -70,16 +70,8 @@ const BookingMain = () => {
     setFilterState(filterBy);
   };
   useEffect(() => {
-    if (userRole === 'Manager') {
-      dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
-    } else if (userRole === 'Storage Owner') {
-      dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
-    } else {
-      dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
-    }
-    // dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
+    dispatch(getAllBookings(token, userRole, page, filterState, dayValue));
   }, [dayValue, filterState, dispatch, token, userId, userRole]);
-  // 656089024c6d3d55dc90aa73
 
   return (
     <>
@@ -112,6 +104,7 @@ const BookingMain = () => {
             selectedValue={filterState}
             onChange={filterSpaceHandler}
             labelName="Select"
+            all={true}
           />
 
           <DatePicker
@@ -129,10 +122,10 @@ const BookingMain = () => {
       <div className="pt-3">
         <BookingTable
           short={false}
-          filterState={filterState}
           dayValue={dayValue}
           page={page}
           setPage={setPage}
+          filterState={filterState}
         />
       </div>
     </>

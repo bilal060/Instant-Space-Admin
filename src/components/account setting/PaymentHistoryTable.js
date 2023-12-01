@@ -12,12 +12,11 @@ function PaymentHistoryTable({ dayValue, page, short, filterState, setPage }) {
   };
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
-  const userId = useSelector((state) => state.user.user._id);
   const bookings = useSelector((state) => state.booking.bookings);
   const userRole = useSelector((state) => state.user.user.role);
 
   useEffect(() => {
-    dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
+    dispatch(getAllBookings(token, userRole, page, filterState, dayValue));
   }, []);
 
   // const [currentPage] = useState(1);

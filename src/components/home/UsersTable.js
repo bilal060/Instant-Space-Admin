@@ -1,36 +1,46 @@
-import { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-import { Button, Image } from 'react-bootstrap';
+import { Button, Dropdown, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import '../../assets/css/table.css';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
-import { getAllUsers } from '../../store/user/actions/actionCreators';
+import { UpdateUserStatus, getAllUsers } from '../../store/user/actions/actionCreators';
+import threeDots from '../../assets/images/icons/threeDots.svg';
+import ImageDisplay from '../../shared/Image';
 
 const UsersTable = ({ filterBy, page, short, setPage }) => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
   const users = useSelector((state) => state.user.users);
 
-  useEffect(() => {
-    dispatch(getAllUsers(token, page, filterBy));
-  }, []);
-
   const pageHandler = (page) => {
     setPage(page);
     dispatch(getAllUsers(token, page, filterBy));
+  };
+
+  const UpdateUser = (userId, status) => {
+    const data = {
+      active: status
+    };
+    dispatch(UpdateUserStatus(userId, token, data, filterBy, page));
   };
 
   return (
     <div className="my-2">
       {users?.users?.length > 0 ? (
         <div className="NewSpace custom-table rounded-8px">
-          <Table responsive hover striped className="m-0 min-w-850px">
+          <Table responsive hover striped className="m-0 min-w-850px rounded-8px">
             <thead>
               <tr>
                 <th>Full Name</th>
                 <th>Contact Info</th>
-                <th>Contact Info</th>
+                <th>Role</th>
+                {filterBy === 'Manager' && (
+                  <>
+                    <th>Slot</th>
+                  </>
+                )}
                 <th>Status</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -41,111 +51,120 @@ const UsersTable = ({ filterBy, page, short, setPage }) => {
                         return (
                           <tr key={index} className="pt-3">
                             <td>
-                              <div className="d-flex align-items-center w-25 h-25">
-                                <Image
-                                  src={`${process.env.REACT_APP_SERVER_URL}${item?.photo}`}
-                                  className="table-pic-size rounded-1"
+                              <div className="d-flex align-items-center">
+                                <ImageDisplay
+                                  src={`${process.env.REACT_APP_SERVER_URL}${item.photo}`}
+                                  alt="user-image"
+                                  loading="lazy"
+                                  style={{ width: '40px', height: '40px', borderRadius: '6px' }}
                                 />
-                                <p className="ps-3 p-0 m-0 tb-data">{item?.fullName}</p>
+                                <p className="ps-3 p-0 m-0 tb-data">
+                                  {item?.fullName ||
+                                    `${item.firstName} ${item.lastName}` ||
+                                    item.companyName}
+                                </p>
                               </div>
                             </td>
                             <td>
-                              <p style={{ maxWidth: '210px', margin: '0' }}>{item.phoneNo}</p>
+                              <p style={{ maxWidth: '210px', margin: '0' }}>
+                                {item.phoneNo || item.email}
+                              </p>
                             </td>
                             <td>
                               <p className="m-0">{item.role}</p>
                             </td>
-                            <td>
-                              <p>{item.gender}</p>
-                            </td>
-                            <td>
-                              <p>{item.email}</p>
-                            </td>
+                            {filterBy === 'Manager' && (
+                              <td>{`${item.slot?.from} to ${item.slot?.to}`}</td>
+                            )}
                             <td>
                               <Button
                                 className={`custom-status ${
-                                  item.status === 'rejected'
-                                    ? 'bg-lightRed'
-                                    : item.status === 'pending'
-                                      ? 'bg-lightYellow'
-                                      : 'bg-lightgreen'
+                                  item.active === false ? 'bg-lightRed' : 'bg-lightgreen'
                                 } unpaid rounded fw-bold text-capitalize`}
                                 variant={`${
-                                  item.status === 'rejected'
-                                    ? 'outline-danger'
-                                    : item.status === 'pending'
-                                      ? 'outline-warning'
-                                      : 'outline-success'
+                                  item.active === false ? 'outline-danger' : 'outline-success'
                                 } `}>
-                                {item.status}
+                                {item.active ? 'Active' : 'InActive'}
                               </Button>
+                            </td>
+                            <td className="text-end">
+                              <div className="threeDots-dropdown">
+                                <Dropdown>
+                                  <Dropdown.Toggle id="dropdown-basic" className="border-0">
+                                    <Image alt="gallery" src={threeDots} className=" pe-3" />
+                                  </Dropdown.Toggle>
+
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item onClick={() => UpdateUser(item._id, true)}>
+                                      Active
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={() => UpdateUser(item._id, false)}>
+                                      InActive
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
+                              </div>
                             </td>
                           </tr>
                         );
                       })
                     : users.users.map((item, index) => {
-                        const fromDate = new Date(item.from);
-                        const toDate = new Date(item.to);
-
-                        const options = {
-                          hour: 'numeric',
-                          minute: 'numeric',
-                          hour12: true,
-                          month: 'long',
-                          day: 'numeric',
-                          year: 'numeric'
-                        };
-                        const formattedFromDate = fromDate.toLocaleString('en-US', options);
-                        const formattedToDate = toDate.toLocaleString('en-US', options);
                         return (
                           <tr key={index} className="pt-3">
                             <td>
-                              <div className="d-flex align-items-center w-25 h-25">
-                                <Image
-                                  src={`${process.env.REACT_APP_SERVER_URL}${item.userId.photo}`}
-                                  className="table-pic-size rounded-1"
+                              <div className="d-flex align-items-center">
+                                <ImageDisplay
+                                  src={`${process.env.REACT_APP_SERVER_URL}${item.photo}`}
+                                  alt="user-image"
+                                  loading="lazy"
+                                  style={{ width: '40px', height: '40px', borderRadius: '6px' }}
                                 />
-                                <p className="ps-3 p-0 m-0 tb-data">{item.userId.fullName}</p>
+                                <p className="ps-3 p-0 m-0 tb-data">
+                                  {item?.fullName ||
+                                    `${item.firstName} ${item.lastName}` ||
+                                    item.companyName}
+                                </p>
                               </div>
                             </td>
                             <td>
                               <p style={{ maxWidth: '210px', margin: '0' }}>
-                                {item.serviceId.address}
+                                {item.phoneNo || item.email}
                               </p>
                             </td>
                             <td>
-                              <p className="m-0">{item.serviceId.contact}</p>
+                              <p className="m-0">{item.role}</p>
                             </td>
-                            <td>
-                              <p style={{ maxWidth: '120px', margin: '0' }}>{formattedFromDate}</p>
-                            </td>
-                            <td>
-                              <p style={{ maxWidth: '120px', margin: '0' }}>{formattedToDate}</p>
-                            </td>
-                            <td>
-                              <p>{item.category}</p>
-                            </td>
-                            <td>
-                              <p>${item.price}</p>
-                            </td>
+                            {filterBy === 'Manager' && (
+                              <td>{`${item.slot?.from} to ${item.slot?.to}`}</td>
+                            )}
                             <td>
                               <Button
                                 className={`custom-status ${
-                                  item.status === 'rejected'
-                                    ? 'bg-lightRed'
-                                    : item.status === 'pending'
-                                      ? 'bg-lightYellow'
-                                      : 'bg-lightgreen'
+                                  item.active === false ? 'bg-lightRed' : 'bg-lightgreen'
                                 } unpaid rounded fw-bold text-capitalize`}
                                 variant={`${
-                                  item.status === 'rejected'
-                                    ? 'outline-danger'
-                                    : item.status === 'pending'
-                                      ? 'outline-warning'
-                                      : 'outline-success'
+                                  item.active === false ? 'outline-danger' : 'outline-success'
                                 } `}>
-                                {item.status}
+                                {item.active ? 'Active' : 'InActive'}
                               </Button>
+                            </td>
+                            <td className="text-end">
+                              <div className="threeDots-dropdown">
+                                <Dropdown>
+                                  <Dropdown.Toggle id="dropdown-basic" className="border-0">
+                                    <Image alt="gallery" src={threeDots} className=" pe-3" />
+                                  </Dropdown.Toggle>
+
+                                  <Dropdown.Menu>
+                                    <Dropdown.Item onClick={() => UpdateUser(item._id, true)}>
+                                      Active
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={() => UpdateUser(item._id, false)}>
+                                      InActive
+                                    </Dropdown.Item>
+                                  </Dropdown.Menu>
+                                </Dropdown>
+                              </div>
                             </td>
                           </tr>
                         );

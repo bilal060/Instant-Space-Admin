@@ -30,7 +30,6 @@ const EventCalender = () => {
     }));
     setEvents(formatBookingData);
   }, [bookings]);
-  console.log(events);
   return (
     <div>
       <FullCalendar

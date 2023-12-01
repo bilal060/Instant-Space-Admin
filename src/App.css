@@ -78,6 +78,57 @@ body {
   height: 40px !important;
 }
 
+.table-responsive {
+  border-radius: 8px !important;
+}
+
+.booking-btn {
+  background: linear-gradient(90deg, #f9785e 0%, #e1565b 100%);
+  border: 0 !important;
+}
+
+.btn-orange-outline {
+  background: rgba(255, 87, 87, 0.1) !important;
+  font-weight: 700;
+  border-radius: 8px;
+  border-radius: 8px !important;
+  height: 56px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border: 1px solid #FF5757 !important;
+  color: var(--primary) !important;
+}
+
+@media screen and (max-width: 500px) {
+  .btn-orange-outline {
+    background: rgba(255, 87, 87, 0.1) !important;
+    border: 1px solid var(--primary) !important;
+    border-radius: 8px;
+    border-radius: 8px !important;
+    height: 45px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary) !important;
+  }
+}
+
+.btn-blue {
+  background: var(--color, linear-gradient(90deg, #f9785e 0%, #e1565b 100%)) !important;
+  border-radius: 8px !important;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  border: 0 !important;
+}
+
 .text-14 {
   font-size: 14px;
   line-height: 100%;

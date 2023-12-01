@@ -7,6 +7,7 @@ import { deleteManager, getOwnerManagers } from '../../store/storeIndex';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
 import threeDots from '../../assets/images/icons/threeDots.svg';
 import '../../assets/css/loading.css';
+import ImageDisplay from '../../shared/Image';
 function ManagerTable(props) {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -52,9 +53,11 @@ function ManagerTable(props) {
                 <tr key={index} className="pt-3">
                   <td>
                     <div className="d-flex align-items-center w-25 h-25">
-                      <Image
+                      <ImageDisplay
                         src={`${process.env.REACT_APP_SERVER_URL}${item.photo}`}
-                        className="table-pic-size"
+                        alt="user-image"
+                        loading="lazy"
+                        style={{ width: '40px', height: '40px', borderRadius: '6px' }}
                       />
                       <p className="p-0 ms-2">{item.firstName}</p>
                     </div>

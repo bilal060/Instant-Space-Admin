@@ -112,21 +112,6 @@
   padding: 0 20px;
 }
 
-.btn-orange-outline {
-  background: rgba(255, 87, 87, 0.1) !important;
-  font-weight: 700;
-  border-radius: 8px;
-  border-radius: 8px !important;
-  height: 56px !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  border: 1px solid #FF5757;
-}
 
 .h-fit-content {
   height: fit-content !important;

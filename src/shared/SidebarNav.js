@@ -27,7 +27,7 @@ const SidebarNav = () => {
             Home
           </MenuItem>
         </NavLink>
-        <NavLink to="/all-spaces" className="menu-item-link">
+        <NavLink to="/dashboard/users" className="menu-item-link">
           <MenuItem>
             <span className="menu-icon">
               <SpacesIcon />

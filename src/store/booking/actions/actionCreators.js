@@ -2,51 +2,49 @@ import * as actionTypes from './actionTypes';
 import Toast from '../../../shared/Toast';
 import Axios from '../../../axios/Axios';
 
-export const getAllBookings =
-  (userId, token, userRole, page = 1, filterState, dayValue) =>
-  (dispatch) => {
-    let filterParam = '';
-    if (filterState) {
-      if (filterState === 'upcoming') {
-        filterParam = 'upcoming=true';
-      } else if (filterState === 'pending') {
-        filterParam = 'status=pending';
-      }
+export const getAllBookings = (token, userRole, page, filterState, dayValue) => (dispatch) => {
+  let filterParam = '';
+  if (filterState) {
+    if (filterState === 'upcoming') {
+      filterParam = 'upcoming=true';
+    } else if (filterState === 'pending') {
+      filterParam = 'status=pending';
     }
-    let dateParams = '';
-    if (dayValue) {
-      const [startDate, endDate] = dayValue;
+  }
+  let dateParams = '';
+  if (dayValue) {
+    const [startDate, endDate] = dayValue;
 
-      if (startDate && endDate) {
-        const isoStartDate = new Date(startDate).toISOString();
-        const isoEndDate = new Date(endDate).toISOString();
+    if (startDate && endDate) {
+      const isoStartDate = new Date(startDate).toISOString();
+      const isoEndDate = new Date(endDate).toISOString();
 
-        dateParams = `&startDate=${isoStartDate}&endDate=${isoEndDate}`;
-      } else {
-        const isoStartDate = new Date(startDate).toISOString();
-        dateParams = `&startDate=${isoStartDate}`;
-      }
+      dateParams = `&startDate=${isoStartDate}&endDate=${isoEndDate}`;
+    } else {
+      const isoStartDate = new Date(startDate).toISOString();
+      dateParams = `&startDate=${isoStartDate}`;
     }
+  }
 
-    Axios.get(
-      `bookings/?page=${page}&userType=${userRole}${
-        filterParam ? `&${filterParam}` : ''
-      }${dateParams}`,
-      {
-        headers: { Authorization: `Bearer ${token}` }
-      }
-    )
-      .then((response) => {
-        dispatch({
-          type: actionTypes.ALL_BOOKING,
-          payload: response.data
-        });
-      })
-      .catch((error) => {
-        Toast.error(error.response.data.message);
-        console.log(error.response.data);
+  Axios.get(
+    `bookings/?page=${page}&userType=${userRole}${
+      filterParam ? `&${filterParam}` : ''
+    }${dateParams}`,
+    {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+  )
+    .then((response) => {
+      dispatch({
+        type: actionTypes.ALL_BOOKING,
+        payload: response.data
       });
-  };
+    })
+    .catch((error) => {
+      Toast.error(error.response.data.message);
+      console.log(error.response.data);
+    });
+};
 
 export const getRecentBookings = (userId, token, userRole, page) => () => {
   Axios.get(`bookings/user_bookings/${userId}?page=${page}&userType=${userRole}`, {
@@ -60,16 +58,12 @@ export const getRecentBookings = (userId, token, userRole, page) => () => {
 };
 
 export const DeleteBooking =
-  (bookingId, token, data, handleClose, userId, page, userRole, filterState, dayValue) =>
-  (dispatch) => {
+  (bookingId, token, data, handleClose, page, userRole, dayValue) => (dispatch) => {
     Axios.patch(`bookings/update_status/${bookingId}`, data, {
       headers: { Authorization: `Bearer ${token}` }
     })
-
       .then(() => {
-        console.log(userId, token, userRole, page, filterState, dayValue);
-
-        dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
+        dispatch(getAllBookings(token, userRole, page, dayValue));
         handleClose();
       })
       .catch((error) => {

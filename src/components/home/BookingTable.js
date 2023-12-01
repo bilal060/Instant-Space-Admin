@@ -8,6 +8,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { DeleteBooking, getAllBookings } from '../../store/booking/actions/actionCreators';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
+import ImageDisplay from '../../shared/Image';
 
 const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    dispatch(getAllBookings(userId, token, userRole, page, dayValue));
+    dispatch(getAllBookings(token, userRole, page, dayValue));
   }, []);
 
   const deleteBookingHandler = (id) => {
@@ -30,16 +31,14 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
   };
   const pageHandler = (page) => {
     setPage(page);
-    dispatch(getAllBookings(userId, token, userRole, page, dayValue));
+    dispatch(getAllBookings(token, userRole, page, dayValue));
   };
 
-  const AcceptBooking = (id) => {
+  const AcceptBooking = (bookingId) => {
     const data = {
       status: 'approved'
     };
-    dispatch(
-      DeleteBooking(id, token, data, handleClose, userId, page, userRole, filterState, dayValue)
-    );
+    dispatch(DeleteBooking(bookingId, token, data, handleClose, page, userRole, dayValue));
   };
   const initialValues = {
     notes: ''
@@ -106,11 +105,13 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
                           <tr key={index} className="pt-3">
                             <td>
                               <div className="d-flex align-items-center w-25 h-25">
-                                <Image
-                                  src={`${process.env.REACT_APP_SERVER_URL}${item.userId.photo}`}
-                                  className="table-pic-size rounded-1"
+                                <ImageDisplay
+                                  src={`${process.env.REACT_APP_SERVER_URL}${item?.userId?.photo}`}
+                                  alt="user-image"
+                                  loading="lazy"
+                                  style={{ width: '40px', height: '40px', borderRadius: '6px' }}
                                 />
-                                <p className="ps-3 p-0 m-0 tb-data">{item.userId.fullName}</p>
+                                <p className="ps-3 p-0 m-0 tb-data">{item.userId?.fullName}</p>
                               </div>
                             </td>
                             <td>
@@ -194,11 +195,13 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
                           <tr key={index} className="pt-3">
                             <td>
                               <div className="d-flex align-items-center w-25 h-25">
-                                <Image
-                                  src={`${process.env.REACT_APP_SERVER_URL}${item.userId.photo}`}
-                                  className="table-pic-size rounded-1"
+                                <ImageDisplay
+                                  src={`${process.env.REACT_APP_SERVER_URL}${item?.userId?.photo}`}
+                                  alt="user-image"
+                                  loading="lazy"
+                                  style={{ width: '40px', height: '40px', borderRadius: '6px' }}
                                 />
-                                <p className="ps-3 p-0 m-0 tb-data">{item.userId.fullName}</p>
+                                <p className="ps-3 p-0 m-0 tb-data">{item.userId?.fullName}</p>
                               </div>
                             </td>
                             <td>
@@ -286,7 +289,7 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
           total={bookings.totalRecords}
           limit={bookings.limit}
           changePage={(page) => pageHandler(page)}
-          ellipsis={1}
+          ellipsis={2}
         />
       ) : (
         ''

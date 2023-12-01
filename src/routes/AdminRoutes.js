@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 const EditAccount = lazy(() => import('../pages/accounts/EditAccount.js'));
 const Home = lazy(() => import('../pages/Home.js'));
 const Bookings = lazy(() => import('../pages/Bookings.js'));
+const AllUsers = lazy(() => import('../pages/AllUsers.js'));
 const PaymentHistory = lazy(() => import('../pages/PaymentHistory.js'));
 const MyManagers = lazy(() => import('../pages/MyManagers.js'));
 const Notifications = lazy(() => import('../pages/Notifications.js'));
@@ -24,7 +25,7 @@ function GlobalRoutes() {
     <>
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
-        <Route exact path="/dashboard/users" element={<Bookings />}></Route>
+        <Route exact path="/dashboard/users" element={<AllUsers />}></Route>
         <Route exact path="/dashboard/bookings" element={<Bookings />}></Route>
         <Route exact path="/dashboard/payment-history" element={<PaymentHistory />}></Route>
         <Route exact path="/dashboard/my-managers" element={<MyManagers />}></Route>

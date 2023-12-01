@@ -100,8 +100,3 @@ foreignObject {
 .min-w-850px {
   min-width: 850px;
 }
-
-.booking-btn {
-  background: linear-gradient(90deg, #f9785e 0%, #e1565b 100%);
-  border: 0;
-}
