@@ -32,7 +32,7 @@ export default function HomeHeader(props) {
     }
   ];
   return (
-    <div className="main my-3">
+    <div className="main">
       <Row className="mt-3 d-flex justify-content-between w-100 pe-0 gap-md-0 gap-3 mx-0">
         <Col className="d-flex align-items-center ps-0">
           <span className="heading">{heading}</span>

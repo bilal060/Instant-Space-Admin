@@ -3,7 +3,6 @@ import { Form } from 'react-bootstrap';
 
 function MyDropDown(props) {
   const { options, selectedValue, onChange, labelName, all } = props;
-  console.log(all);
   return (
     <div className="d-flex align-items-center">
       {Object?.keys(options)?.length > 0 && (
@@ -16,8 +15,7 @@ function MyDropDown(props) {
             aria-label="Default drop-input select example"
             className=""
             defaultValue={selectedValue}
-            onChange={(e) => onChange(e.target.value)}
-          >
+            onChange={(e) => onChange(e.target.value)}>
             {all && <option value="all">All</option>}
             {options?.map((option, index) => {
               return (

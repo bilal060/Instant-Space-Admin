@@ -1,38 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
 import '../../assets/css/dashboard-misc.css';
-import ManagerTable from './ManagerTable';
-import { useSelector, useDispatch } from 'react-redux';
-import { getOwnerManagers, getUserSpaces } from '../../store/storeIndex';
-import MyDropDown from '../../pages/MyDropDown';
+import UsersTable from '../home/UsersTable';
+import { Col, Row } from 'react-bootstrap';
 
 const ManagerMain = () => {
-  const [filterState, setFilterState] = useState('all');
-  const dispatch = useDispatch();
-  const userId = useSelector((state) => state.user.user._id);
-  const userSpaces = useSelector((state) => state?.space?.userSpaces);
-  useEffect(() => {
-    dispatch(getUserSpaces(userId));
-  }, [dispatch, userId]);
-  useEffect(() => {
-    dispatch(getUserSpaces());
-  }, [dispatch]);
-
-  const filterManagerHandler = (filterBy) => {
-    if (filterBy === 'all') {
-      dispatch(getOwnerManagers());
-    } else {
-      dispatch(getOwnerManagers(1, filterBy));
-    }
-    setFilterState(filterBy);
-  };
+  const [page, setPage] = useState(1);
+  const [filterBy] = useState('Manager');
   return (
     <>
       <Row className="mt-3 d-flex justify-content-between w-100 p-0  gap-xl-0 gap-2 mx-0">
         <Col sm="5" xxl="4" xl="3" className="p-0 d-flex align-items-center">
-          <span className="heading">My Managers</span>
+          <span className="heading">All Managers</span>
         </Col>
-        <Col
+        {/* <Col
           xs="12"
           xxl="8"
           xl="9"
@@ -51,11 +31,9 @@ const ManagerMain = () => {
               labelName="Select Shift"
             />
           </div>
-        </Col>
+        </Col> */}
       </Row>
-      <div className="pt-3 px-0">
-        <ManagerTable emptyDataMsg="You don’t have any Staff Yet" />
-      </div>
+      <UsersTable short={false} filterBy={filterBy} page={page} setPage={setPage} />
     </>
   );
 };

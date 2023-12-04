@@ -84,10 +84,10 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(bookings.bookings).length > 0 && bookings.bookings.length > 0 && (
+              {Object.keys(bookings?.bookings).length > 0 && bookings?.bookings?.length > 0 && (
                 <>
                   {short
-                    ? bookings.bookings.slice(0, 5).map((item, index) => {
+                    ? bookings?.bookings?.slice(0, 5).map((item, index) => {
                         const fromDate = new Date(item.from);
                         const toDate = new Date(item.to);
 
@@ -177,7 +177,7 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
                           </tr>
                         );
                       })
-                    : bookings.bookings.map((item, index) => {
+                    : bookings?.bookings?.map((item, index) => {
                         const fromDate = new Date(item.from);
                         const toDate = new Date(item.to);
 
@@ -282,15 +282,18 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
           </div>
         </div>
       )}
-      {!short && bookings.totalRecords > 10 ? (
-        <PaginationControl
-          page={page}
-          between={3}
-          total={bookings.totalRecords}
-          limit={bookings.limit}
-          changePage={(page) => pageHandler(page)}
-          ellipsis={2}
-        />
+      {!short && bookings?.totalRecords > 10 ? (
+        <div className="d-flex justify-content-between align-items-center gap-3 mt-4">
+          <p className="mb-0 font-weight-500 font-16 text-grey fst-italic">{`Showing ${bookings?.limit} of ${bookings?.totalRecords}`}</p>
+          <PaginationControl
+            page={page}
+            between={3}
+            total={bookings?.totalRecords}
+            limit={bookings?.limit}
+            changePage={(page) => pageHandler(page)}
+            ellipsis={2}
+          />
+        </div>
       ) : (
         ''
       )}

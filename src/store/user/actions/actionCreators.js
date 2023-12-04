@@ -164,34 +164,6 @@ export const sendManagerInvitation = (data, token, onHide) => (dispatch) => {
     });
 };
 
-export const getOwnerManagers =
-  (page = 1, filterBy = '') =>
-  (dispatch) => {
-    Axios.get(`users/owner-managers/?page=${page}&filterBy=${filterBy}`)
-      .then((response) => {
-        dispatch({
-          type: actionTypes.USER_MANAGERS,
-          payload: response.data
-        });
-      })
-      .catch((error) => {
-        Toast.error(error.response?.data?.message);
-        console.log(error.response.data);
-      });
-  };
-export const deleteManager = (userId, managerId, handleClose) => (dispatch) => {
-  Axios.delete(`owner-managers/${managerId}`)
-    .then((response) => {
-      dispatch(getOwnerManagers());
-      handleClose();
-      Toast.success(response.data.message);
-    })
-    .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
-    });
-};
-
 export const UpdateUserStatus = (userId, token, data, filterBy, page) => (dispatch) => {
   Axios.patch(`users/changeUserStatus/${userId}`, data, {
     headers: { Authorization: `Bearer ${token}` }
@@ -267,11 +239,11 @@ export const getAllUsers =
       .then((response) => {
         dispatch({
           type: actionTypes.ALL_USER,
-          payload: response.data.data
+          payload: response.data
         });
       })
       .catch((error) => {
         Toast.error(error.response?.data?.message);
-        console.log(error.response.data);
+        console.log(error.response?.data);
       });
   };
