@@ -18,12 +18,12 @@ const EventCalender = () => {
   const token = useSelector((state) => state.user.token);
   const userId = useSelector((state) => state.user.user._id);
   const userRole = useSelector((state) => state.user.user.role);
-  const bookings = useSelector((state) => state.booking.bookings.bookings);
+  const bookings = useSelector((state) => state.booking.bookings);
   useEffect(() => {
     dispatch(getAllBookings(userId, token, userRole, 'upcoming'));
   }, [dispatch, userId, token, userRole]);
   useEffect(() => {
-    const formatBookingData = bookings?.map((booking) => ({
+    const formatBookingData = bookings?.bookings?.map((booking) => ({
       id: createEventId(),
       title: booking.category,
       start: booking.from

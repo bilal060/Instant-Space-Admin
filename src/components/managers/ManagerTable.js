@@ -131,14 +131,17 @@ function ManagerTable(props) {
         </div>
       )}
       {managers.totalRecords > 10 ? (
-        <PaginationControl
-          page={page}
-          between={3}
-          total={managers.totalRecords}
-          limit={managers.limit}
-          changePage={(page) => pageHandler(page)}
-          ellipsis={2}
-        />
+        <div className="d-flex justify-content-between align-items-center gap-3">
+          <p className="mb-0 font-weight-500 font-16 text-grey fst-italic">{`Showing ${managers.limit} of ${managers.totalRecords}`}</p>
+          <PaginationControl
+            page={page}
+            between={3}
+            total={managers.totalRecords}
+            limit={managers.limit}
+            changePage={(page) => pageHandler(page)}
+            ellipsis={2}
+          />
+        </div>
       ) : (
         ''
       )}

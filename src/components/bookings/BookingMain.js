@@ -21,29 +21,29 @@ const BookingMain = () => {
   const [filterState, setFilterState] = useState('all');
   const [page, setPage] = useState(1);
   const bookings = useSelector((state) => state.booking.bookings);
-  const pendingBookings = bookings.bookings?.filter((booking) => booking.status === 'pending');
-  const cancelledBookings = bookings.bookings?.filter((booking) => booking.status === 'rejected');
+  const pendingBookings = bookings?.bookings?.filter((booking) => booking.status === 'pending');
+  const cancelledBookings = bookings?.bookings?.filter((booking) => booking.status === 'rejected');
   const totalEarnings =
-    bookings.bookings?.reduce((total, booking) => {
+    bookings?.bookings?.reduce((total, booking) => {
       return total + (booking.status === 'approved' ? booking.price : 0);
     }, 0) || 0;
 
   const data = [
     {
       icon: Booking,
-      description: bookings.totalRecords,
+      description: bookings?.totalRecords || 0,
       title: 'Total Bookings',
       cardColor: '#fff'
     },
     {
       icon: Payment,
-      description: pendingBookings.length,
+      description: pendingBookings?.length || 0,
       title: 'Pending Bookings',
       cardColor: '#fff'
     },
     {
       icon: Cancel,
-      description: cancelledBookings.length,
+      description: cancelledBookings?.length || 0,
       title: 'Cancelled Bookings',
       cardColor: '#fff'
     },
@@ -98,8 +98,7 @@ const BookingMain = () => {
           xl="8"
           lg="8"
           md="8"
-          className="d-flex flex-sm-row flex-column justify-content-md-end justify-content-between pe-0 gap-3"
-        >
+          className="d-flex flex-sm-row flex-column justify-content-md-end justify-content-between pe-0 gap-3">
           <MyDropDown
             options={filterableCategories}
             selectedValue={filterState}

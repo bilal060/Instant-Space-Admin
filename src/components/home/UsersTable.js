@@ -25,8 +25,8 @@ const UsersTable = ({ filterBy, page, short, setPage }) => {
   };
 
   return (
-    <div className="my-2">
-      {users?.users?.length > 0 ? (
+    <div className="pt-4 px-0">
+      {users?.data?.users?.length > 0 ? (
         <div className="NewSpace custom-table rounded-8px">
           <Table responsive hover striped className="m-0 min-w-850px rounded-8px">
             <thead>
@@ -44,10 +44,10 @@ const UsersTable = ({ filterBy, page, short, setPage }) => {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(users.users).length > 0 && users.users.length > 0 && (
+              {Object.keys(users.data.users).length > 0 && users.data.users.length > 0 && (
                 <>
                   {short
-                    ? users.users.slice(0, 5).map((item, index) => {
+                    ? users.data.users.slice(0, 5).map((item, index) => {
                         return (
                           <tr key={index} className="pt-3">
                             <td>
@@ -108,7 +108,7 @@ const UsersTable = ({ filterBy, page, short, setPage }) => {
                           </tr>
                         );
                       })
-                    : users.users.map((item, index) => {
+                    : users.data.users.map((item, index) => {
                         return (
                           <tr key={index} className="pt-3">
                             <td>
@@ -184,15 +184,19 @@ const UsersTable = ({ filterBy, page, short, setPage }) => {
           </div>
         </div>
       )}
+
       {!short && users.totalRecords > 10 ? (
-        <PaginationControl
-          page={page}
-          between={3}
-          total={users.totalRecords}
-          limit={users.limit}
-          changePage={(page) => pageHandler(page)}
-          ellipsis={1}
-        />
+        <div className="d-flex justify-content-between align-items-center gap-3 mt-4">
+          <p className="mb-0 font-weight-500 font-16 text-grey fst-italic">{`Showing ${users.limit} of ${users.totalRecords}`}</p>
+          <PaginationControl
+            page={page}
+            between={3}
+            total={users.totalRecords}
+            limit={users.limit}
+            changePage={(page) => pageHandler(page)}
+            ellipsis={1}
+          />
+        </div>
       ) : (
         ''
       )}
