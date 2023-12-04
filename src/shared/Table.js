@@ -61,13 +61,15 @@ function PageTable() {
                   {item.status === 'Paid' ? (
                     <Button
                       className="custom-status bg-lightgreen paid rounded fw-bold "
-                      variant="outline-success">
+                      variant="outline-success"
+                    >
                       {item.status}
                     </Button>
                   ) : (
                     <Button
                       className="custom-status bg-lightRed unpaid rounded fw-bold"
-                      variant="outline-danger">
+                      variant="outline-danger"
+                    >
                       {item.status}
                     </Button>
                   )}

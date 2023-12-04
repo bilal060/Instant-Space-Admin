@@ -65,7 +65,7 @@
 }
 
 .switch-btn-off svg path {
-  stroke: #7D8695;
+  stroke: #7d8695;
 }
 
 .bg-space {
@@ -111,7 +111,7 @@
 }
 
 .space-card-icon-off.notactive {
-  background: #F1F6F7;
+  background: #f1f6f7;
   display: flex;
   height: 63px;
   width: 63px;
@@ -123,7 +123,7 @@
 }
 
 .space-card-icon-off.notactive svg path {
-  stroke: #7D8695;
+  stroke: #7d8695;
 }
 
 @media (min-width: 576px) {

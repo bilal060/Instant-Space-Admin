@@ -194,7 +194,8 @@ export default function CustomerHomeHeader({ view, setView, ...props }) {
           class1={''}
           show={lgShow}
           onHide={() => setLgShow(false)}
-          className="customer-home-filter">
+          className="customer-home-filter"
+        >
           <CustomerHomeFilterForm setLgShow={setLgShow} />
         </CustomModal1>
       </div>

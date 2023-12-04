@@ -16,7 +16,8 @@ function MyDropDown(props) {
             aria-label="Default drop-input select example"
             className=""
             defaultValue={selectedValue}
-            onChange={(e) => onChange(e.target.value)}>
+            onChange={(e) => onChange(e.target.value)}
+          >
             {all && <option value="all">All</option>}
             {options?.map((option, index) => {
               return (

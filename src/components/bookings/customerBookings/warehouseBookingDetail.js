@@ -95,7 +95,8 @@ const WarehouseBookingDetail = ({ AreaIcon, fields, setFields }) => {
             className="h-40px btn-primary rounded btn-blue btn btn-primary"
             onClick={addField}
             disabled={fields.length === 10}
-            type="button">
+            type="button"
+          >
             Add More
           </Button>
         </div>
