@@ -14,7 +14,8 @@ const SpaceFilter = () => {
             md="8"
             lg="8"
             xl="5"
-            className="d-flex flex-sm-row flex-column-reverse justify-content-between gap-2 p-0">
+            className="d-flex flex-sm-row flex-column-reverse justify-content-between gap-2 p-0"
+          >
             <div className="d-flex align-items-center w-100">
               {/* {Object.keys(filterableCategories).length > 0 && ( */}
               <div className="d-flex align-items-center justify-content-start justify-content-sm-end w-100 gap-2">

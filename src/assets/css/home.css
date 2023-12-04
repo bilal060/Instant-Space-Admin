@@ -46,14 +46,13 @@
   padding: 24px 32px;
 }
 
-.new-space-modal .field-container>div {
+.new-space-modal .field-container > div {
   height: 56px;
 }
 
 .new-space-modal .field-container {
   margin-bottom: 4px !important;
 }
-
 
 .new-space-modal .rmdp-container {
   width: 100% !important;
@@ -111,7 +110,6 @@
   border: 0;
   padding: 0 20px;
 }
-
 
 .h-fit-content {
   height: fit-content !important;

@@ -78,7 +78,8 @@ const MapCards = ({ isLoading, loadMoreData, ...props }) => {
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
-          }>
+          }
+        >
           {Object.keys(spaces).length > 0 &&
             spaces.spaces.length > 0 &&
             spaces.spaces.slice(0, props.length).map((space, index) => {

@@ -100,7 +100,7 @@ body {
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
-  border: 1px solid #FF5757 !important;
+  border: 1px solid #ff5757 !important;
   color: var(--primary) !important;
 }
 
@@ -685,7 +685,7 @@ input[type='tel'] {
   padding: 0px 5px !important;
 }
 
-.disabled>.page-link,
+.disabled > .page-link,
 .page-link.disabled {
   color: #7d8695 !important;
   pointer-events: none;
@@ -710,7 +710,6 @@ input[type='tel'] {
   pointer-events: none;
   background-color: transparent !important;
   border-color: #000000 !important;
-
 }
 
 .threeDots-dropdown div .btn-primary {
@@ -855,7 +854,7 @@ input[type='tel'] {
 }
 
 .slick-slider .slick-track,
-.slick-slider .slick-list .slick-slide>div {
+.slick-slider .slick-list .slick-slide > div {
   height: 100%;
 }
 

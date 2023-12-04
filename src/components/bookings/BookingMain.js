@@ -98,7 +98,8 @@ const BookingMain = () => {
           xl="8"
           lg="8"
           md="8"
-          className="d-flex flex-sm-row flex-column justify-content-md-end justify-content-between pe-0 gap-3">
+          className="d-flex flex-sm-row flex-column justify-content-md-end justify-content-between pe-0 gap-3"
+        >
           <MyDropDown
             options={filterableCategories}
             selectedValue={filterState}

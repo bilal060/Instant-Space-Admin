@@ -8,7 +8,8 @@ const Indiviuals = () => {
         height={32}
         viewBox="0 0 26 32"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           fillRule="evenodd"
           clipRule="evenodd"

@@ -54,7 +54,7 @@
   gap: 8px !important;
 }
 
-.service-provide-register .button input[type='radio']:checked+label svg path {
+.service-provide-register .button input[type='radio']:checked + label svg path {
   fill: white !important;
 }
 
@@ -63,7 +63,7 @@
   z-index: 100 !important;
 }
 
-.button input[type='radio']:checked+label {
+.button input[type='radio']:checked + label {
   background: linear-gradient(90deg, #fb7c5f 1.2%, #df525b 100%) !important;
   color: white !important;
   gap: 8px !important;
@@ -80,7 +80,7 @@
   gap: 8px !important;
 }
 
-.companyform .button input[type='radio']:checked+label svg path {
+.companyform .button input[type='radio']:checked + label svg path {
   fill: white !important;
 }
 
@@ -110,9 +110,9 @@
   background-color: #0d6efd !important;
   cursor: pointer;
 }
-.selected-book{
+.selected-book {
   color: white;
-  
+
   background: var(--color, linear-gradient(90deg, #f9785e 0%, #e1565b 100%)) !important;
 }
 .selected span,

@@ -37,7 +37,7 @@
   background-color: white !important;
 }
 
-.cutomer-home .button input[type='radio']:checked+label svg path {
+.cutomer-home .button input[type='radio']:checked + label svg path {
   fill: white;
 }
 
@@ -52,7 +52,7 @@
   border-radius: 16px;
 }
 
-.cutomer-home-filter input[type='radio']:not(:checked)+label {
+.cutomer-home-filter input[type='radio']:not(:checked) + label {
   background-color: #f1f6f7 !important;
 }
 
@@ -60,16 +60,16 @@
   visibility: hidden;
 }
 
-.cutomer-home-filter input[type='checkbox']+label {
+.cutomer-home-filter input[type='checkbox'] + label {
   position: relative;
   background-color: #f1f6f7 !important;
 }
 
-.form-check-input[type='checkbox']:checked+label {
+.form-check-input[type='checkbox']:checked + label {
   padding-right: 30px !important;
 }
 
-.form-check-input[type='checkbox']:checked+label::after {
+.form-check-input[type='checkbox']:checked + label::after {
   content: '';
   width: 30px;
   height: 30px;
@@ -96,6 +96,5 @@
     height: 223px;
     /* max-height: 223px; */
     /* height: clamp(223px, 100%, 223px); */
-
   }
 }

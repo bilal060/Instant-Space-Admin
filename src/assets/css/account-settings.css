@@ -16,7 +16,7 @@
   }
 
   .account-setting input,
-  .field-container>div {
+  .field-container > div {
     height: 40px !important;
   }
 
@@ -295,7 +295,6 @@ select {
 .react-tel-input .flag-dropdown {
   left: 40px;
 }
-
 
 @media screen and (max-width: 400px) {
   .custom-w {

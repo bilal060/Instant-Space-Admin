@@ -17,7 +17,8 @@ const SidebarNav = () => {
       width="290px"
       collapsedWidth="65px"
       backgroundColor="#fff"
-      className="main-navigation">
+      className="main-navigation"
+    >
       <Menu className="mt-4 gap-2">
         <NavLink to="/" className="menu-item-link">
           <MenuItem>

@@ -78,7 +78,8 @@ const CustomerInfoForm = () => {
           <Form>
             <label
               htmlFor="image"
-              className="field-container custom-dotted rounded-circle bg-white custom-bg-class upload-picture">
+              className="field-container custom-dotted rounded-circle bg-white custom-bg-class upload-picture"
+            >
               <input
                 {...getInputProps()}
                 id="image"

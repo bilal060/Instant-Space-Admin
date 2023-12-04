@@ -10,9 +10,9 @@
 }
 
 .radio-inactive {
-  background: var(--Button-G, #F1F6F7) !important;
+  background: var(--Button-G, #f1f6f7) !important;
   border-radius: 6px;
-  color: var(--Body-Text, #7D8695) !important;
+  color: var(--Body-Text, #7d8695) !important;
   width: 100%;
 }
 
