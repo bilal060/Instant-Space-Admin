@@ -107,10 +107,10 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
                             <td>
                               <div className="d-flex align-items-center w-25 h-25">
                                 <Image
-                                  src={`${process.env.REACT_APP_SERVER_URL}${item.userId.photo}`}
+                                  src={`${process.env.REACT_APP_SERVER_URL}${item?.userId?.photo}`}
                                   className="table-pic-size rounded-1"
                                 />
-                                <p className="ps-3 p-0 m-0 tb-data">{item.userId.fullName}</p>
+                                <p className="ps-3 p-0 m-0 tb-data">{item?.userId?.fullName}</p>
                               </div>
                             </td>
                             <td>
@@ -198,7 +198,7 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
                                   src={`${process.env.REACT_APP_SERVER_URL}${item.userId.photo}`}
                                   className="table-pic-size rounded-1"
                                 />
-                                <p className="ps-3 p-0 m-0 tb-data">{item.userId.fullName}</p>
+                                <p className="ps-3 p-0 m-0 tb-data">{item?.userId?.fullName}</p>
                               </div>
                             </td>
                             <td>

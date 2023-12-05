@@ -23,10 +23,10 @@ export const userLogin = (data, navigation) => (dispatch) => {
         dispatch(getUserSpaces());
       }
       navigation('/');
-      Toast.success(response.data.status);
+      Toast.success(response?.data?.status);
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
+      Toast.error(error?.response?.data?.message);
     });
 };
 
