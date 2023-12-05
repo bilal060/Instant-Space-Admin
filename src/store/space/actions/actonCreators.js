@@ -14,8 +14,8 @@ export const getUserSpaces =
         });
       })
       .catch((error) => {
-        Toast.error(error.response.data.message);
-        console.log(error.response.data);
+        Toast.error(error?.response?.data.message);
+        console.log(error?.response?.data);
       });
   };
 
@@ -30,8 +30,8 @@ export const getAllSpaces =
         });
       })
       .catch((error) => {
-        Toast.error(error.response.data.message);
-        console.log(error.response.data);
+        Toast.error(error?.response?.data.message);
+        console.log(error?.response?.data);
       });
   };
 
@@ -46,8 +46,8 @@ export const getSingleSpace = (id, token) => (dispatch) => {
       });
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error?.response?.data.message);
+      console.log(error?.response?.data);
     });
 };
 
@@ -59,8 +59,8 @@ export const addUserSpace = (data, navigate) => (dispatch) => {
       Toast.success(response.data.message);
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error?.response?.data.message);
+      console.log(error?.response?.data);
     });
 };
 
@@ -74,8 +74,8 @@ export const updateUserSpace = (data, id, token, navigate) => (dispatch) => {
       Toast.success(response.data.message);
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error?.response?.data.message);
+      console.log(error?.response?.data);
     });
 };
 
@@ -86,8 +86,8 @@ export const changeAvailability = (userId, data) => (dispatch) => {
       Toast.success(response.data.message);
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error?.response?.data.message);
+      console.log(error?.response?.data);
     });
 };
 
@@ -101,8 +101,8 @@ export const deleteSpace = (userId, spaceId, token, handleClose) => (dispatch) =
       Toast.success(response.data.message);
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error?.response?.data.message);
+      console.log(error?.response?.data);
     });
 };
 
@@ -118,8 +118,8 @@ export const getAreaSpace = (id, token) => (dispatch) => {
       console.log(response.data);
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error?.response?.data.message);
+      console.log(error?.response?.data);
     });
 };
 export const createReview = (data, token, onHide) => (dispatch) => {
@@ -132,7 +132,7 @@ export const createReview = (data, token, onHide) => (dispatch) => {
       Toast.success(response.data.message);
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error?.response?.data.message);
+      console.log(error?.response?.data);
     });
 };
