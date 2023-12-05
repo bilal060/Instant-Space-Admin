@@ -12,11 +12,11 @@ const Home = () => {
   const [dayValue, setDayValue] = useState();
   const [page, setPage] = useState(1);
   const [filterState, setFilterState] = useState('all');
-  const [filterBy, setFilterBy] = useState('Customer');
+  const [filterBy, setFilterBy] = useState('Manager');
 
   return (
     <Container fluid>
-      <HomeHeader heading="Users" setFilterBy={setFilterBy} filterBy={filterBy} />
+      <HomeHeader page={page} heading="Users" setFilterBy={setFilterBy} filterBy={filterBy} short />
       <UsersTable short filterBy={filterBy} page={page} setPage={setPage} />
       <div className="pt-3"></div>
       <BookingHeader

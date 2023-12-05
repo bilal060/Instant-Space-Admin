@@ -78,6 +78,69 @@ body {
   height: 40px !important;
 }
 
+.table-responsive {
+  border-radius: 8px !important;
+}
+
+.booking-btn {
+  background: linear-gradient(90deg, #f9785e 0%, #e1565b 100%);
+  border: 0 !important;
+}
+
+.btn-orange-outline {
+  background: rgba(255, 87, 87, 0.1) !important;
+  font-weight: 700;
+  border-radius: 8px;
+  border-radius: 8px !important;
+  height: 56px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border: 1px solid #ff5757 !important;
+  color: var(--primary) !important;
+}
+
+.btn-outline-success {
+  color: #198754 !important;
+}
+
+.btn-outline-warning {
+  color: #ffc107 !important;
+}
+
+.btn-outline-danger {
+  color: #dc3545 !important;
+}
+
+@media screen and (max-width: 500px) {
+  .btn-orange-outline {
+    background: rgba(255, 87, 87, 0.1) !important;
+    border: 1px solid var(--primary) !important;
+    border-radius: 8px;
+    border-radius: 8px !important;
+    height: 45px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary) !important;
+  }
+}
+
+.btn-blue {
+  background: var(--color, linear-gradient(90deg, #f9785e 0%, #e1565b 100%)) !important;
+  border-radius: 8px !important;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  border: 0 !important;
+}
+
 .text-14 {
   font-size: 14px;
   line-height: 100%;
@@ -646,20 +709,32 @@ input[type='tel'] {
   cursor: pointer !important;
 }
 
+.page-item.active .page-link {
+  color: #171D25 !important;
+  font-weight: 700;
+}
+
 .page-item .page-link {
+  background-color: transparent !important;
+  border: 0 !important;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 24px;
   height: 24px;
+  color: var(--Body-Text, #7D8695) !important;
 }
 
-.page-item:last-child .page-link {
-  color: #000000 !important;
-  pointer-events: none;
+:is(.page-item:last-child, .page-item:first-child) .page-link {
+  color: #171D25 !important;
   background-color: transparent !important;
-  border-color: #000000 !important;
+  border-color: #171D25 !important;
+  border: 2px solid !important;
+}
 
+.page-item.disabled .page-link {
+  border-color: #7D8695 !important;
+  color: #7D8695 !important;
 }
 
 .threeDots-dropdown div .btn-primary {

@@ -7,10 +7,8 @@ export {
   userLogout,
   userLogoutNotAdmin,
   sendManagerInvitation,
-  getOwnerManagers,
   updateUserAccount,
-  updateUserPassword,
-  deleteManager
+  updateUserPassword
 } from './user/actions/actionCreators';
 
 export {
@@ -33,9 +31,7 @@ export {
 } from './space/actions/actonCreators';
 
 export {
-  getUserBookings,
-  createBooking,
-  getOwnerBookings,
-  getManagerBookings,
-  getAllUserBookings
+  getAllBookings,
+  DeleteBooking,
+  getAllTransactions
 } from './booking/actions/actionCreators';

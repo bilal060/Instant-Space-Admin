@@ -8,7 +8,8 @@ const CustomModal = ({ heading, class1, children, ...props }) => {
       backdrop="static"
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
-      centered>
+      centered
+    >
       <Modal.Header className={`fw-bolder fs-5 ${class1}`} closeButton>
         {heading}
       </Modal.Header>

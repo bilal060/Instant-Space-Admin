@@ -31,6 +31,7 @@ const AccountPaymentHistory = () => {
             selectedValue={filterState}
             onChange={filterSpaceHandler}
             labelName="Select"
+            all={true}
           />
 
           <DatePicker

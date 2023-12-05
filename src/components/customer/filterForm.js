@@ -152,7 +152,8 @@ const CustomerHomeFilterForm = ({ setLgShow }) => {
             className="form-control-range w-100"
             min="5"
             max="45"
-            step="5"></input>
+            step="5"
+          ></input>
           <p className="rangetext d-flex w-100 justify-content-between m-0">
             <span>$5</span>
             <span>$10</span>
@@ -187,7 +188,8 @@ const CustomerHomeFilterForm = ({ setLgShow }) => {
             <Button
               type="submit"
               className="btn-orange-outline w-100"
-              onClick={() => setLgShow(false)}>
+              onClick={() => setLgShow(false)}
+            >
               Reset All
             </Button>
           </Col>

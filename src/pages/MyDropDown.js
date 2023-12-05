@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 
 function MyDropDown(props) {
-  const { options, selectedValue, onChange, labelName } = props;
+  const { options, selectedValue, onChange, labelName, all } = props;
   return (
     <div className="d-flex align-items-center">
       {Object?.keys(options)?.length > 0 && (
@@ -16,7 +16,7 @@ function MyDropDown(props) {
             className=""
             defaultValue={selectedValue}
             onChange={(e) => onChange(e.target.value)}>
-            <option value="all">All</option>
+            {all && <option value="all">All</option>}
             {options?.map((option, index) => {
               return (
                 <option key={index} value={option?._id} className="text-capitalize">

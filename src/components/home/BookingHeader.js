@@ -36,7 +36,7 @@ export default function BookingHeader({
     setFilterState(filterBy);
   };
   useEffect(() => {
-    dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
+    dispatch(getAllBookings(token, userRole, page, filterState, dayValue));
   }, [dayValue, filterState, dispatch, page, token, userId, userRole]);
 
   return (
@@ -57,6 +57,7 @@ export default function BookingHeader({
             selectedValue={filterState}
             onChange={filterSpaceHandler}
             labelName="Select"
+            all={true}
           />
 
           <DatePicker

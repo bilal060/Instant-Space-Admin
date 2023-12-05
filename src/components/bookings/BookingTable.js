@@ -173,7 +173,8 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
                             : item.status === 'pending'
                               ? 'outline-warning'
                               : 'outline-success'
-                        } `}>
+                        } `}
+                      >
                         {item.status}
                       </Button>
                     </td>
@@ -272,7 +273,8 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        className="delete-modal">
+        className="delete-modal"
+      >
         <Modal.Header closeButton>
           <Modal.Title>
             <div className="fw-bold">Reject Booking Request</div>
@@ -282,7 +284,8 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
           <Formik
             initialValues={initialValues}
             validationSchema={newPasswordValidationSchema}
-            onSubmit={submitHandler}>
+            onSubmit={submitHandler}
+          >
             {({ touched, errors }) => (
               <Form action="" className="text-light-black">
                 <div className="d-flex flex-column pb-4">
@@ -301,7 +304,8 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
                     <Button
                       type="button"
                       className="btn-orange-outline w-100"
-                      onClick={handleClose}>
+                      onClick={handleClose}
+                    >
                       Cancel
                     </Button>
                   </Col>

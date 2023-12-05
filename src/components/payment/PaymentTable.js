@@ -1,40 +1,24 @@
 import { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-import { Button, Image } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOwnerManagers } from '../../store/storeIndex';
+import { getAllTransactions } from '../../store/storeIndex';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
+import ImageDisplay from '../../shared/Image';
 
 function PaymentTable() {
   const dispatch = useDispatch();
-
   const [page, setPage] = useState(1);
-
   const token = useSelector((state) => state.user.token);
-  const managers = useSelector((state) => state.user.managers);
-
+  const transactions = useSelector((state) => state.booking.transactions);
   const pageHandler = (page) => {
     setPage(page);
-    dispatch(getOwnerManagers(token, page));
+    dispatch(getAllTransactions(token, page));
   };
 
-  const [currentPage] = useState(1);
-  const recordsPerPage = 10;
-
   useEffect(() => {
-    dispatch(getOwnerManagers(token));
+    dispatch(getAllTransactions(token, page));
   }, [token]);
-
-  const data =
-    Object.keys(managers).length > 0 && managers?.managers.length > 0 ? managers.managers : [];
-
-  // const handlePageChange = (pageNumber) => {
-  //   setCurrentPage(pageNumber);
-  // };
-
-  const indexOfLastRecord = currentPage * recordsPerPage;
-  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
 
   return (
     <div className="bg-white rounded custom-table">
@@ -42,66 +26,80 @@ function PaymentTable() {
         <thead>
           <tr>
             <th>Customer Full Name</th>
-            <th>Branch Location</th>
-            <th>Contact Info</th>
-            <th>From</th>
-            <th>To</th>
-            <th>Space Type</th>
+            <th>Booking Category</th>
+            <th>Booking Date</th>
+            <th>Duration</th>
             <th>Total Amount</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {currentRecords.map((item, index) => (
-            <tr key={index} className="pt-3">
-              <td>
-                <div className="d-flex align-items-center w-25 h-25">
-                  <Image
-                    src={`${process.env.REACT_APP_SERVER_URL}${item.photo}`}
-                    className="table-pic-size"
-                  />
-                  <p className="p-0 m-0">{item.fullName}</p>
-                </div>
-              </td>
-              <td>{item.branch.description}</td>
-              <td>{item.phoneNo}</td>
-              <td>{item.slot.from}</td>
-              <td>{item.slot.to}</td>
-              <td>{item.type}</td>
-              <td>{item.amount}</td>
-              <td>
-                {item.status === 'Paid' ? (
+          {transactions?.earning.map((item, index) => {
+            const bookingDate = new Date(item.createdAt);
+            const options = {
+              hour: 'numeric',
+              minute: 'numeric',
+              hour12: true,
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            };
+            const formattedBookingDate = bookingDate.toLocaleString('en-US', options);
+            return (
+              <tr key={index} className="pt-3">
+                <td>
+                  <div className="d-flex align-items-center w-25 h-25 gap-2">
+                    <ImageDisplay
+                      src={`${process.env.REACT_APP_SERVER_URL}${item?.userId?.photo}`}
+                      alt="user-image"
+                      loading="lazy"
+                      style={{ width: '40px', height: '40px', borderRadius: '6px' }}
+                    />
+                    <p className="p-0 m-0">{item.userId.fullName}</p>
+                  </div>
+                </td>
+                <td>{item.bookingId.category} </td>
+                <td>
+                  <p style={{ maxWidth: '120px', margin: '0' }}>{formattedBookingDate}</p>
+                </td>
+                <td>{item.bookingId.totalDuration}</td>
+                <td>{item.totalEarning}</td>
+                <td>
                   <Button
-                    className="custom-status bg-lightgreen paid rounded fw-bold "
-                    variant="outline-success">
-                    {item.status}
+                    className={`custom-status ${
+                      item.bookingId.status === 'rejected'
+                        ? 'bg-lightRed'
+                        : item.bookingId.status === 'pending'
+                          ? 'bg-lightYellow'
+                          : 'bg-lightgreen'
+                    } unpaid rounded fw-bold text-capitalize`}
+                    variant={`${
+                      item.bookingId.status === 'rejected'
+                        ? 'outline-danger'
+                        : item.bookingId.status === 'pending'
+                          ? 'outline-warning'
+                          : 'outline-success'
+                    } `}>
+                    {item.bookingId.status}
                   </Button>
-                ) : (
-                  <Button
-                    className="custom-status bg-lightRed unpaid rounded fw-bold"
-                    variant="outline-danger">
-                    {item.status}
-                  </Button>
-                )}
-              </td>
-              <td className=" >!py-5 text-end">
-                <a href="#" className="btn btn-sm btn-icon btn-active-color-primary ">
-                  <Image src={item.threeDots} />
-                </a>
-              </td>
-            </tr>
-          ))}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </Table>
-      {managers.totalRecords > 10 ? (
-        <PaginationControl
-          page={page}
-          between={3}
-          total={managers.totalRecords}
-          limit={managers.limit}
-          changePage={(page) => pageHandler(page)}
-          ellipsis={2}
-        />
+      {transactions?.totalRecords > 10 ? (
+        <div className="d-flex justify-content-between align-items-center gap-3 mt-4">
+          <p className="mb-0 font-weight-500 font-16 text-grey fst-italic">{`Showing ${transactions?.limit} of ${transactions?.totalRecords}`}</p>
+          <PaginationControl
+            page={page}
+            between={3}
+            total={transactions.totalRecords}
+            limit={transactions.limit}
+            changePage={(page) => pageHandler(page)}
+            ellipsis={2}
+          />
+        </div>
       ) : (
         ''
       )}

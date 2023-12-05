@@ -1,23 +1,21 @@
 import { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOwnerManagers } from '../../store/storeIndex';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
 import { getAllBookings } from '../../store/booking/actions/actionCreators';
 
 function PaymentHistoryTable({ dayValue, page, short, filterState, setPage }) {
   const pageHandler = (page) => {
     setPage(page);
-    dispatch(getOwnerManagers(token, page));
+    dispatch(getAllBookings(token, userRole, page, filterState, dayValue));
   };
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
-  const userId = useSelector((state) => state.user.user._id);
   const bookings = useSelector((state) => state.booking.bookings);
   const userRole = useSelector((state) => state.user.user.role);
 
   useEffect(() => {
-    dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
+    dispatch(getAllBookings(token, userRole, page, filterState, dayValue));
   }, []);
 
   // const [currentPage] = useState(1);

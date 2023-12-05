@@ -8,6 +8,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { DeleteBooking, getAllBookings } from '../../store/booking/actions/actionCreators';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
+import ImageDisplay from '../../shared/Image';
 
 const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    dispatch(getAllBookings(userId, token, userRole, page, dayValue));
+    dispatch(getAllBookings(token, userRole, page, dayValue));
   }, []);
 
   const deleteBookingHandler = (id) => {
@@ -30,16 +31,14 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
   };
   const pageHandler = (page) => {
     setPage(page);
-    dispatch(getAllBookings(userId, token, userRole, page, dayValue));
+    dispatch(getAllBookings(token, userRole, page, dayValue));
   };
 
-  const AcceptBooking = (id) => {
+  const AcceptBooking = (bookingId) => {
     const data = {
       status: 'approved'
     };
-    dispatch(
-      DeleteBooking(id, token, data, handleClose, userId, page, userRole, filterState, dayValue)
-    );
+    dispatch(DeleteBooking(bookingId, token, data, handleClose, page, userRole, dayValue));
   };
   const initialValues = {
     notes: ''
@@ -85,10 +84,10 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(bookings.bookings).length > 0 && bookings.bookings.length > 0 && (
+              {Object.keys(bookings?.bookings).length > 0 && bookings?.bookings?.length > 0 && (
                 <>
                   {short
-                    ? bookings.bookings.slice(0, 5).map((item, index) => {
+                    ? bookings?.bookings?.slice(0, 5).map((item, index) => {
                         const fromDate = new Date(item.from);
                         const toDate = new Date(item.to);
 
@@ -106,11 +105,13 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
                           <tr key={index} className="pt-3">
                             <td>
                               <div className="d-flex align-items-center w-25 h-25">
-                                <Image
+                                <ImageDisplay
                                   src={`${process.env.REACT_APP_SERVER_URL}${item?.userId?.photo}`}
-                                  className="table-pic-size rounded-1"
+                                  alt="user-image"
+                                  loading="lazy"
+                                  style={{ width: '40px', height: '40px', borderRadius: '6px' }}
                                 />
-                                <p className="ps-3 p-0 m-0 tb-data">{item?.userId?.fullName}</p>
+                                <p className="ps-3 p-0 m-0 tb-data">{item.userId?.fullName}</p>
                               </div>
                             </td>
                             <td>
@@ -176,7 +177,7 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
                           </tr>
                         );
                       })
-                    : bookings.bookings.map((item, index) => {
+                    : bookings?.bookings?.map((item, index) => {
                         const fromDate = new Date(item.from);
                         const toDate = new Date(item.to);
 
@@ -194,11 +195,13 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
                           <tr key={index} className="pt-3">
                             <td>
                               <div className="d-flex align-items-center w-25 h-25">
-                                <Image
-                                  src={`${process.env.REACT_APP_SERVER_URL}${item.userId.photo}`}
-                                  className="table-pic-size rounded-1"
+                                <ImageDisplay
+                                  src={`${process.env.REACT_APP_SERVER_URL}${item?.userId?.photo}`}
+                                  alt="user-image"
+                                  loading="lazy"
+                                  style={{ width: '40px', height: '40px', borderRadius: '6px' }}
                                 />
-                                <p className="ps-3 p-0 m-0 tb-data">{item?.userId?.fullName}</p>
+                                <p className="ps-3 p-0 m-0 tb-data">{item.userId?.fullName}</p>
                               </div>
                             </td>
                             <td>
@@ -279,15 +282,18 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
           </div>
         </div>
       )}
-      {!short && bookings.totalRecords > 10 ? (
-        <PaginationControl
-          page={page}
-          between={3}
-          total={bookings.totalRecords}
-          limit={bookings.limit}
-          changePage={(page) => pageHandler(page)}
-          ellipsis={1}
-        />
+      {!short && bookings?.totalRecords > 10 ? (
+        <div className="d-flex justify-content-between align-items-center gap-3 mt-4">
+          <p className="mb-0 font-weight-500 font-16 text-grey fst-italic">{`Showing ${bookings?.limit} of ${bookings?.totalRecords}`}</p>
+          <PaginationControl
+            page={page}
+            between={3}
+            total={bookings?.totalRecords}
+            limit={bookings?.limit}
+            changePage={(page) => pageHandler(page)}
+            ellipsis={2}
+          />
+        </div>
       ) : (
         ''
       )}

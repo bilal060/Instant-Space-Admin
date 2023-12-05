@@ -73,11 +73,11 @@ export const forgetPassword = (data, navigate, moveTo) => (dispatch) => {
           moveTo
         }
       });
-      Toast.success(response.data.status);
+      Toast.success(response?.data?.status);
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error.response?.data?.message);
+      console.log(error.response?.data);
     });
 };
 
@@ -92,11 +92,11 @@ export const verifyOtp =
             role
           }
         });
-        Toast.success(response.data.message);
+        Toast.success(response?.data?.message);
       })
       .catch((error) => {
-        Toast.error(error.response.data.message);
-        console.log(error.response.data);
+        Toast.error(error.response?.data?.message);
+        console.log(error.response?.data);
       });
   };
 
@@ -116,11 +116,11 @@ export const resetPassword = (data, navigate) => (dispatch) => {
         dispatch(getUserSpaces());
       }
       navigate('/');
-      Toast.success(response.data.status);
+      Toast.success(response?.data?.status);
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error.response?.data?.message);
+      console.log(error.response?.data);
     });
 };
 
@@ -132,7 +132,7 @@ export const updateUserProfile = (data, navigate, token) => (dispatch) => {
       console.log(response);
       dispatch({
         type: actionTypes.UPDATE_ACCOUNT,
-        payload: response.data.data.user
+        payload: response?.data?.data.user
       });
 
       const role = response?.data?.data?.user?.role;
@@ -142,11 +142,11 @@ export const updateUserProfile = (data, navigate, token) => (dispatch) => {
       } else {
         navigate('/');
       }
-      Toast.success(response.data.message);
+      Toast.success(response?.data?.message);
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error.response?.data?.message);
+      console.log(error.response?.data);
     });
 };
 
@@ -156,41 +156,27 @@ export const sendManagerInvitation = (data, token, onHide) => (dispatch) => {
   })
     .then((response) => {
       onHide();
-      Toast.success(response.data.message);
+      Toast.success(response?.data?.message);
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error.response?.data?.message);
+      console.log(error.response?.data);
     });
 };
 
-export const getOwnerManagers =
-  (page = 1, filterBy = '') =>
-  (dispatch) => {
-    Axios.get(`users/owner-managers/?page=${page}&filterBy=${filterBy}`)
-      .then((response) => {
-        dispatch({
-          type: actionTypes.USER_MANAGERS,
-          payload: response.data
-        });
-      })
-      .catch((error) => {
-        Toast.error(error.response?.data?.message);
-        console.log(error.response.data);
-      });
-  };
-export const deleteManager = (userId, managerId, handleClose) => (dispatch) => {
-  Axios.delete(`owner-managers/${managerId}`)
-    .then((response) => {
-      dispatch(getOwnerManagers());
-      handleClose();
-      Toast.success(response.data.message);
+export const UpdateUserStatus = (userId, token, data, filterBy, page) => (dispatch) => {
+  Axios.patch(`users/changeUserStatus/${userId}`, data, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then(() => {
+      dispatch(getAllUsers(token, page, filterBy));
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error.response?.data?.message);
+      console.log(error.response?.data);
     });
 };
+
 export const getPayments =
   (id, token, page = 1) =>
   (dispatch) => {
@@ -204,8 +190,8 @@ export const getPayments =
         });
       })
       .catch((error) => {
-        Toast.error(error.response.data.message);
-        console.log(error.response.data);
+        Toast.error(error.response?.data?.message);
+        console.log(error.response?.data);
       });
   };
 
@@ -214,16 +200,16 @@ export const updateUserAccount = (data, token) => (dispatch) => {
     headers: { Authorization: `Bearer ${token}` }
   })
     .then((response) => {
-      console.log(response.data.data.user);
+      console.log(response?.data?.data.user);
       dispatch({
         type: actionTypes.UPDATE_ACCOUNT,
-        payload: response.data.data.user
+        payload: response?.data?.data.user
       });
       Toast.success('Update successful');
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error.response?.data?.message);
+      console.log(error.response?.data);
     });
 };
 
@@ -234,13 +220,13 @@ export const updateUserPassword = (data, token) => (dispatch) => {
     .then((response) => {
       dispatch({
         type: actionTypes.UPDATE_PASSWORD,
-        payload: response.data.token
+        payload: response?.data?.token
       });
       Toast.success('Update successful');
     })
     .catch((error) => {
-      Toast.error(error.response.data.message);
-      console.log(error.response.data);
+      Toast.error(error.response?.data?.message);
+      console.log(error.response?.data);
     });
 };
 
@@ -253,11 +239,11 @@ export const getAllUsers =
       .then((response) => {
         dispatch({
           type: actionTypes.ALL_USER,
-          payload: response.data.data
+          payload: response.data
         });
       })
       .catch((error) => {
         Toast.error(error.response?.data?.message);
-        console.log(error.response.data);
+        console.log(error.response?.data);
       });
   };

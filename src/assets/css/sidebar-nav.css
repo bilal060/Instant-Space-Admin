@@ -30,13 +30,13 @@
   color: #000;
 }
 
-.menu-item-link.active .ps-menu-button {
+.menu-item-link.ps-active.ps-menu-button {
   background: linear-gradient(90deg, #fb7c5f 0.76%, #df525b 99.69%);
   color: var(--primary);
   font-weight: 700;
 }
 
-.menu-item-link.active .ps-menu-button span {
+.menu-item-link.ps-active.ps-menu-button span {
   background: transparent;
   color: white;
   font-weight: 700;
@@ -44,7 +44,7 @@
   line-height: 100%;
 }
 
-.menu-item-link.active .ps-menu-button svg path {
+.menu-item-link.ps-active.ps-menu-button svg path {
   fill: white;
 }
 
@@ -58,7 +58,7 @@
   color: var(--grey);
 }
 
-.menu-item-link .ps-menu-button {
+.menu-item-link.ps-menu-button {
   border-radius: 8px;
   margin: 0 24px;
   margin-bottom: 5px;
@@ -69,8 +69,8 @@
 }
 
 @media screen and (max-width: 991px) {
-  .menu-item-link .ps-menu-button {
+  .menu-item-link.ps-menu-button {
     margin: 0 8px;
-    padding: 0 15px;
+    padding: 0 15px !important;
   }
 }
