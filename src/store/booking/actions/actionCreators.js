@@ -41,7 +41,7 @@ export const getAllBookings = (token, userRole, page, filterState, dayValue) => 
       });
     })
     .catch((error) => {
-      // Toast.error(error.response?.data.message);
+      //Toast.error(error.response?.data.message);
       console.log(error.response?.data);
     });
 };
