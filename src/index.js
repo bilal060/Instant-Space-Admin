@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import UserReducer from './store/user/reducers/UserReducer';
+import UserEarnings from './store/Earning/reducer/EarningReducer';
 import ChatReducer from './store/chat/reducers/ChatReducer';
 import CategoryReducer from './store/category/reducers/CategoryReducer';
 import SpaceReducer from './store/space/reducers/SpaceReducer';
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   chat: ChatReducer,
   category: CategoryReducer,
   space: SpaceReducer,
-  booking: BookingReducer
+  booking: BookingReducer,
+  Earnings: UserEarnings
 });
 
 let devtools, store;
