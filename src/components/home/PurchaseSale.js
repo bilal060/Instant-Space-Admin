@@ -4,9 +4,20 @@ import { Button, Image } from 'react-bootstrap';
 import filterBlue from '../../assets/images/icons/filterBlue.svg';
 import cancel from '../../assets/images/icons/cancel.svg';
 import '../../assets/css/responsive.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserEarning } from '../../store/storeIndex';
 
 const PurchaseSale = () => {
-  const [data] = useState(0);
+  const dispatch = useDispatch();
+  const Earnings = useSelector((state) => state.Earnings.userEarnings.ownerEarning);
+  const token = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(getUserEarning(token));
+  }, []);
+
+  // const [data] = useState(false);
+
   const options = {
     chart: {
       fontFamily: 'inherit',
@@ -160,10 +171,11 @@ const PurchaseSale = () => {
       }
     }
   };
+
   const series = [
     {
       name: 'Net Profit',
-      data: [250, 500, 750, 1000, 250, 500, 750, 1000, 250, 500, 750, 1000]
+      data: Earnings.map((earning) => earning.totalEarning)
     }
   ];
   const [windowSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
@@ -191,7 +203,7 @@ const PurchaseSale = () => {
   return (
     <div className="h-100">
       <div className="heading text-24 mb-4">Transaction Statistics</div>
-      {!data ? (
+      {Earnings ? (
         <div className="b-chart section-main border-0 NewSpace">
           <div className=" d-flex justify-content-between">
             <div className="card-label rounded-3 my-2 px-2 d-flex justify-content-center bg-light">

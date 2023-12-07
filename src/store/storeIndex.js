@@ -35,3 +35,5 @@ export {
   DeleteBooking,
   getAllTransactions
 } from './booking/actions/actionCreators';
+
+export { getUserEarning } from './Earning/actions/actionCreators';
