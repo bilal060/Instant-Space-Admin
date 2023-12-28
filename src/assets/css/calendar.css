@@ -91,7 +91,7 @@ tr .fc-day-other:hover {
   height: 35.5rem !important;
 }
 
-.fc-scroller-harness > .fc-scroller {
+.fc-scroller-harness>.fc-scroller {
   overflow: hidden !important;
   scroll-behavior: none !important;
 }
@@ -174,9 +174,13 @@ th .fc-scrollgrid-sync-inner {
   background: rgb(223 82 91 / 40%);
   color: white !important;
   border: none !important;
-  min-width: 40px;
-  max-width: 40px;
+  min-width: 45px;
+  max-width: 45px;
   height: 20px !important;
+}
+
+.fc-event label {
+  font-size: 8px !important;
 }
 
 .fc-daygrid-day-events {

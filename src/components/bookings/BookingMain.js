@@ -89,28 +89,26 @@ const BookingMain = () => {
       })}
 
       <Row className="mt-3 d-flex justify-content-between w-100 pe-0 gap-md-0 gap-2">
-        <Col xs="12" xl="4" lg="4" md="4" className="d-flex align-items-center">
+        <Col xs="12" xl="4" md="12" className="d-flex align-items-center">
           <span className="heading">Booking Management</span>
         </Col>
 
         <Col
           xs="12"
           xl="8"
-          lg="8"
-          md="8"
+          md="12"
           className="d-flex flex-sm-row flex-column justify-content-md-end justify-content-between pe-0 gap-3">
           <MyDropDown
             options={filterableCategories}
             selectedValue={filterState}
             onChange={filterSpaceHandler}
             labelName="Select"
-            all={true}
           />
 
           <DatePicker
             value={dayValue}
             onChange={setDayValue}
-            inputClass="calendar-input"
+            inputClass="calendar-input w-100"
             placeholder="Select Day"
             minDate={new Date()}
             format="YYYY-MM-DD"

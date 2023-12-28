@@ -4,7 +4,6 @@ const initialState = {
   userEarnings: {}
 };
 const UserEarnings = (state = initialState, action) => {
-  console.log(action, 'this is action');
   switch (action.type) {
     case actionTypes.USER_EARNING:
       return {

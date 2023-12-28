@@ -40,8 +40,7 @@ const AccountNewPassword = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={newPasswordValidationSchema}
-        onSubmit={submitHandler}
-      >
+        onSubmit={submitHandler}>
         {() => (
           <Form action="" className="text-light-black">
             <Row className="align-items-start pb-4 gap-sm-0 gap-3">

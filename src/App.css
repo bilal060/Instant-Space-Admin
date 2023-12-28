@@ -36,8 +36,10 @@ body {
 }
 
 .section-main {
-  border: 1px solid #d9d9d9;
-  padding: 10px;
+  background: #ffffff;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 16px;
   margin: 10px 0;
 }
 
@@ -139,6 +141,16 @@ body {
   align-items: center;
   color: var(--white);
   border: 0 !important;
+}
+
+.apexcharts-tooltip {
+  box-shadow: 1px 2px 13px -3px #999 !important;
+  background-color: white;
+}
+
+.dropdown-item:active {
+  background-color: #e9ecef !important;
+  color: inherit !important;
 }
 
 .text-14 {

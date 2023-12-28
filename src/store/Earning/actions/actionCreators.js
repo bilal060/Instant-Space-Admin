@@ -7,16 +7,12 @@ export const getUserEarning = (token) => (dispatch) => {
     headers: { Authorization: `Bearer ${token}` }
   })
     .then((response) => {
-      console.log('this is the correct response');
-
       dispatch({
         type: actionTypes.USER_EARNING,
         payload: response?.data
       });
     })
     .catch((error) => {
-      console.log('this is the error response');
-
       Toast.error(error.response?.data?.message);
       console.log(error.response?.data);
     });

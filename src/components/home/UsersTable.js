@@ -59,9 +59,13 @@ const UsersTable = ({ filterBy, page, short, setPage }) => {
                                   style={{ width: '40px', height: '40px', borderRadius: '6px' }}
                                 />
                                 <p className="ps-3 p-0 m-0 tb-data">
-                                  {item?.fullName ||
-                                    `${item.firstName} ${item.lastName}` ||
-                                    item.companyName}
+                                  {item?.fullName
+                                    ? item?.fullName
+                                    : item.firstName
+                                      ? `${item.firstName} ${item.lastName}`
+                                      : item.companyName
+                                        ? item.companyName
+                                        : 'No Username'}
                                 </p>
                               </div>
                             </td>

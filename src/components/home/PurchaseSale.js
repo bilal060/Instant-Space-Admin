@@ -16,8 +16,6 @@ const PurchaseSale = () => {
     dispatch(getUserEarning(token));
   }, []);
 
-  // const [data] = useState(false);
-
   const options = {
     chart: {
       fontFamily: 'inherit',
@@ -175,7 +173,7 @@ const PurchaseSale = () => {
   const series = [
     {
       name: 'Net Profit',
-      data: Earnings.map((earning) => earning.totalEarning)
+      data: Earnings?.map((earning) => earning.totalEarning)
     }
   ];
   const [windowSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
@@ -203,17 +201,16 @@ const PurchaseSale = () => {
   return (
     <div className="h-100">
       <div className="heading text-24 mb-4">Transaction Statistics</div>
-      {Earnings ? (
-        <div className="b-chart section-main border-0 NewSpace">
+      {Earnings && Earnings.length > 0 ? (
+        <div className="b-chart section-main border-0">
           <div className=" d-flex justify-content-between">
             <div className="card-label rounded-3 my-2 px-2 d-flex justify-content-center bg-light">
               <label className="">2002-2003</label>
               <Image alt="gallery" src={cancel} className=" ps-1 text-primary" />
             </div>
             <Button
-              variant="outline-primary"
               // className=" fw-bolder bg-lightBlue px-3 booking-btn gap-2"
-              className="text-primary  bg-grey fw-bolder btn-white height-40px gap-2">
+              className="bg-grey fw-bolder d-flex align-items-center px-3 height-40px gap-2 bg-light border-0 text-dark py-0">
               <Image alt="gallery" src={filterBlue} className="text-primary " />
               Filter
             </Button>

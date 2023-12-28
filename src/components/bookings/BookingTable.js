@@ -13,6 +13,7 @@ import threeDots from '../../assets/images/icons/threeDots.svg';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { DeleteBooking, getAllBookings } from '../../store/booking/actions/actionCreators';
+import ImageDisplay from '../../shared/Image';
 
 // import UserImage from '../../assets/images/icons/table.svg';
 
@@ -133,9 +134,11 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
                   <tr key={index} className="pt-3">
                     <td>
                       <div className="d-flex align-items-center w-25 h-25">
-                        <Image
-                          src={`${process.env.REACT_APP_SERVER_URL}${item.userId.photo}`}
-                          className="table-pic-size rounded-1"
+                        <ImageDisplay
+                          src={`${process.env.REACT_APP_SERVER_URL}${item?.userId?.photo}`}
+                          alt="user-image"
+                          loading="lazy"
+                          style={{ width: '40px', height: '40px', borderRadius: '6px' }}
                         />
                         <p className="ps-3 p-0 m-0 tb-data">{item.userId.fullName}</p>
                       </div>
@@ -173,8 +176,7 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
                             : item.status === 'pending'
                               ? 'outline-warning'
                               : 'outline-success'
-                        } `}
-                      >
+                        } `}>
                         {item.status}
                       </Button>
                     </td>
@@ -273,8 +275,7 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        className="delete-modal"
-      >
+        className="delete-modal">
         <Modal.Header closeButton>
           <Modal.Title>
             <div className="fw-bold">Reject Booking Request</div>
@@ -284,8 +285,7 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
           <Formik
             initialValues={initialValues}
             validationSchema={newPasswordValidationSchema}
-            onSubmit={submitHandler}
-          >
+            onSubmit={submitHandler}>
             {({ touched, errors }) => (
               <Form action="" className="text-light-black">
                 <div className="d-flex flex-column pb-4">
@@ -304,8 +304,7 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
                     <Button
                       type="button"
                       className="btn-orange-outline w-100"
-                      onClick={handleClose}
-                    >
+                      onClick={handleClose}>
                       Cancel
                     </Button>
                   </Col>
