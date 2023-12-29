@@ -1,25 +1,22 @@
 import { toast } from 'react-toast-notification';
 
-const success = (message) => {
+const showToast = (message, type) => {
   if (message) {
     toast(message, {
-      status: 'Successful',
-      type: 'success',
+      status: type === 'success' ? 'Successful' : 'Error',
+      type: type,
       autoHide: true,
       delay: '5000'
     });
   }
 };
 
+const success = (message) => {
+  showToast(message, 'success');
+};
+
 const error = (message) => {
-  if (message) {
-    toast(message, {
-      status: 'Error',
-      type: 'error',
-      autoHide: true,
-      delay: '5000'
-    });
-  }
+  showToast(message, 'error');
 };
 
 export default { success, error };

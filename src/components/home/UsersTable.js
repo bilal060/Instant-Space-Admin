@@ -183,7 +183,7 @@ const UsersTable = ({ filterBy, page, short, setPage }) => {
           <div className="d-flex justify-content-center align-items-center pt-5 pb-3 w-100 flex-column">
             <p className="mb-3 auth-special font-weight-700 font-24">opps!</p>
             <p className="mb-5 font-24 font-weight-500 text-center">
-              You don’t have any Booking Yet
+              You don’t have any user of this type
             </p>
           </div>
         </div>
