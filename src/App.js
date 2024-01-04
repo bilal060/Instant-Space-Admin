@@ -3,25 +3,27 @@ import './App.css';
 import './assets/css/notification.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ProSidebarProvider } from 'react-pro-sidebar';
-
 import Loading from './shared/Loading';
 import NavigationRoutes from './routes/NavigationRoutes';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Socket from './Socket';
 import ErrorBoundary from './shared/ErrorBoundary';
 import ErrorBoundaryAlert from './shared/ErrorBoundaryAlert';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'aos/dist/aos.css';
+import { setSocket } from './store/storeIndex';
 
 const AOS = require('aos');
 
 function App() {
-  const userId = useSelector((state) => state.user.user._id);
+  const isLogin = useSelector((state) => state.user.isLogin);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    Socket.emit('join', { userId });
-    Socket.on('getUsers', () => {});
-  }, [userId]);
+    if (!isLogin) return;
+    dispatch(setSocket(Socket));
+  }, [isLogin, dispatch, Socket]);
 
   useEffect(() => {
     AOS.init(

@@ -37,3 +37,10 @@ export {
 } from './booking/actions/actionCreators';
 
 export { getUserEarning } from './Earning/actions/actionCreators';
+
+export {
+  postNotification,
+  deleteNotification,
+  getPaginatedNotification
+} from './notification/actions/actionCreators';
+export { setSocket } from './socket/actions/actionCreators';
