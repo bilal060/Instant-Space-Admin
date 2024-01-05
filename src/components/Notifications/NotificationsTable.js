@@ -93,7 +93,7 @@ const NotificationsTable = () => {
                         </p>
                         <p className="user-name text-14 grey m-0">{notification.Bookingtime}</p>
                       </div>
-                      <div className="threeDots-dropdown">
+                      <div className="threeDots-dropdown d-none">
                         <Dropdown>
                           <Dropdown.Toggle id="dropdown-basic" className="border-0">
                             <Image alt="gallery" src={threeDots} className=" p-2" />
