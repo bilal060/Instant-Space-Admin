@@ -6,16 +6,8 @@
   align-items: center !important;
   width: 100%;
   color: var(--primary);
-}
-
-.all .top-radio-active {
-  width: 42px;
-  height: 42px;
-}
-
-.unread .top-radio-active {
-  width: 62px;
-  height: 62px;
+  transition: background-color 0.4s ease;
+  padding: 4px 12px;
 }
 
 .radio-active {
@@ -24,16 +16,11 @@
   width: 100%;
 }
 
-radio-inactive {
-  border-radius: 6px;
-  width: 100%;
-}
-
 .svg-inactive {
   fill: black;
 }
 
-.radio-active path {
+.radio-active svg path {
   color: #f1f6f7;
   fill: white !important;
   stroke: white;

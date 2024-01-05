@@ -1,23 +1,43 @@
 .notification-bar {
-  height: 80px !important;
-  width: 100%;
   background-color: #ffffff !important;
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05) !important;
   border-radius: 8px !important;
+  cursor: pointer;
   -webkit-border-radius: 8px !important;
   -moz-border-radius: 8px !important;
   -ms-border-radius: 8px !important;
   -o-border-radius: 8px !important;
+  transition: background-color 0.3s ease-in-out;
 }
+
+.infinite-scroll-component__outerdiv {
+  height: 100% !important;
+}
+
+.infinite-scroll-component {
+  overflow: hidden !important;
+  height: auto !important;
+}
+
+.notification-bar.unread {
+  background: radial-gradient(
+    circle at 0% 0.5%,
+    rgb(241, 241, 242) 0.1%,
+    rgb(224, 226, 228) 100.2%
+  );
+  font-weight: 900 !important;
+}
+
 .font-700 {
   font-weight: 700;
 }
+
 .font-14-20 {
   font-size: 14px;
   line-height: 20px;
   color: #171d25;
-  font-weight: 500 !important;
 }
+
 .status-paid {
   font-style: normal;
   font-weight: 700;
@@ -35,6 +55,7 @@
   cursor: pointer;
   background-color: rgba(22, 148, 1, 0.1);
 }
+
 .status-notpaid {
   font-style: normal;
   font-weight: 700;
@@ -52,6 +73,7 @@
   cursor: pointer;
   background-color: rgba(255, 87, 87, 0.1);
 }
+
 .separator {
   display: flex;
   align-items: center;
@@ -79,11 +101,7 @@
 }
 
 @media (min-width: 575.98px) {
-  .notification-bar {
-    min-width: 500px !important;
-    overflow: auto;
-  }
-  p-0 {
+  .p-0 {
     padding: 0 !important;
     margin: 0 !important;
   }
@@ -93,12 +111,28 @@
   background-color: #169401 !important;
   color: red;
 }
+
 .drops-option {
   color: red;
 }
-.notification-bar.selected-row {
+
+:is(.notification-bar:focus, .notification-bar:active, .notification-bar:hover) {
   background-color: #e2e2e2 !important;
 }
+
+:is(.notification-bar:focus, .notification-bar:active, .notification-bar:hover)
+  .threeDots-dropdown {
+  display: block !important;
+}
+
+.threeDots-dropdown {
+  transition: display 0.4s ease;
+}
+
+/* .notification-bar.selected-row {
+  background-color: #e2e2e2 !important;
+} */
+
 /* Add this CSS for card design */
 .card-notification {
   width: 342px;
@@ -126,6 +160,7 @@
 .card-button svg {
   margin-right: 5px;
 }
+
 .cards-links {
   color: #000;
   font-family: Poppins;
