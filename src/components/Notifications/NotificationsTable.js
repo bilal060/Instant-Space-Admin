@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Image, Col, Dropdown } from 'react-bootstrap';
 import Profile from '../../assets/images/icons/table.svg';
 import threeDots from '../../assets/images/icons/CardIcons/threeDots.svg';
+import { ReactComponent as TickIcon } from '../../assets/images/tickercard.svg';
+import { ReactComponent as CrossIcon } from '../../assets/images/crosscard.svg';
+import { ReactComponent as ChatIcon } from '../../assets/images/chatIcon.svg';
 
 const NotificationsTable = () => {
   const data = [
@@ -96,7 +99,18 @@ const NotificationsTable = () => {
                             <Image alt="gallery" src={threeDots} className=" p-2" />
                           </Dropdown.Toggle>
 
-                          <Dropdown.Menu></Dropdown.Menu>
+                          <Dropdown.Menu>
+                            <Dropdown.Item className="d-flex align-items-center gap-2">
+                              <TickIcon />
+                              Mark as read
+                            </Dropdown.Item>
+                            <Dropdown.Item className="d-flex align-items-center gap-2">
+                              <CrossIcon /> Remove this notification
+                            </Dropdown.Item>
+                            <Dropdown.Item className="d-flex align-items-center gap-2">
+                              <ChatIcon /> View all Bookings
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
                         </Dropdown>
                       </div>
                     </div>
