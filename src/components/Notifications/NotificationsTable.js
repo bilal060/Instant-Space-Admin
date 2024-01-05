@@ -1,160 +1,171 @@
 import React, { useState } from 'react';
-import Table from 'react-bootstrap/Table';
-import { Image, Button } from 'react-bootstrap';
+//import Table from 'react-bootstrap/Table';
+import { Image, Col, Dropdown } from 'react-bootstrap';
 import Profile from '../../assets/images/icons/table.svg';
-import CardComponent from '../CardComponent';
+import threeDots from '../../assets/images/icons/CardIcons/threeDots.svg';
+
 const NotificationsTable = () => {
   const data = [
     {
-      picture: Profile,
-      name: 'Tony Stark1',
-      location: 'Belmont, North Carolina',
-      spacetype: 'Truck Parking',
-      Bookingtime: '10:30 AM  |  May 10, 2023',
-      status: 'Paid',
-      Date: 'Today'
+      date: 'Today',
+      notifications: [
+        {
+          picture: Profile,
+          name: 'Tony Stark1',
+          location: 'Belmont, North Carolina',
+          spacetype: 'Truck Parking',
+          Bookingtime: '10:30 AM  |  May 10, 2023',
+          status: 'Paid'
+        },
+        {
+          picture: Profile,
+          name: 'Tony Stark1',
+          location: 'Belmont, North Carolina',
+          spacetype: 'Truck Parking',
+          Bookingtime: '10:30 AM  |  May 10, 2023',
+          status: 'Paid'
+        }
+      ]
     },
     {
-      picture: Profile,
-      name: 'Tony Stark1',
-      location: 'Belmont, North Carolina',
-      spacetype: 'Truck Parking',
-      Bookingtime: '10:30 AM  |  May 10, 2023',
-      status: 'paid',
-      Date: 'Today'
-    },
-
-    {
-      picture: Profile,
-      name: 'Tony Stark1',
-      location: 'Belmont, North Carolina',
-      spacetype: 'Truck Parking',
-      Bookingtime: '10:30 AM  |  May 3, 2023',
-      status: 'paid',
-      Date: 'Today'
-    },
-    {
-      picture: Profile,
-      name: 'Tony Stark1',
-      location: 'Belmont, North Carolina',
-      spacetype: 'Truck Parking',
-      Bookingtime: '10:30 AM  |  May 3, 2023',
-      status: 'cancelled',
-      Date: 'May 12 2023'
+      date: 'May 12 2023',
+      notifications: [
+        {
+          picture: Profile,
+          name: 'Tony Stark1',
+          location: 'Belmont, North Carolina',
+          spacetype: 'Truck Parking',
+          Bookingtime: '10:30 AM  |  May 3, 2023',
+          status: 'Paid'
+        },
+        {
+          picture: Profile,
+          name: 'Tony Stark1',
+          location: 'Belmont, North Carolina',
+          spacetype: 'Truck Parking',
+          Bookingtime: '10:30 AM  |  May 3, 2023',
+          status: 'Cancelled'
+        }
+      ]
     }
   ];
 
-  const [selectedRow, setSelectedRow] = useState(null); // Step 1
-  const [showCard, setShowCard] = useState(false); // Step 4
-  const [selectedCardData, setSelectedCardData] = useState([]); // Step 5
-
-  const handleShowCard = (notification) => {
-    setSelectedCardData([notification.link1, notification.link2]); // Step 5
-    setShowCard(true); // Step 4
-  };
-
-  const groupedData = {};
-
-  data.forEach((notification) => {
-    const date = notification.Date;
-    if (!groupedData[date]) {
-      groupedData[date] = [];
-    }
-    groupedData[date].push(notification);
-  });
+  const [selectedRow, setSelectedRow] = useState(null);
 
   return (
+    // <div>
+    //   {data.map((group, groupIndex) => (
+    //     <div key={groupIndex} className="notificatons row">
+    //       <div className="separator">
+    //         <div className="line"></div>
+    //         <p className="ms-3 me-3 mt-3">{group.date}</p>
+    //         <div className="line"></div>
+    //       </div>
+    //       {group.notifications.map((notification, index) => (
+    //         <Col
+    //           md={6}
+    //           key={index}
+    //           onClick={() => {
+    //             if (selectedRow === index) {
+    //               setSelectedRow(null);
+    //             } else {
+    //               setSelectedRow(index);
+    //             }
+    //           }}
+    //           className="my-2 py-1">
+    //           <div
+    //             className={`notification-bar p-3 ${selectedRow === index ? 'selected-row' : ''} ${
+    //               notification.status.toLowerCase() === 'paid' ? 'read' : 'unread'
+    //             }`}>
+    //             <Image
+    //               src={notification.picture}
+    //               className="rounded-2"
+    //               style={{ width: '56px', height: '56px' }}
+    //             />
+    //             <div className="d-flex flex-column align-items-start justify-content-center ms-3 p-0 w-100">
+    //               {/* Continue rendering the notification details */}
+    //               {/* ... */}
+    //             </div>
+    //           </div>
+    //         </Col>
+    //       ))}
+    //     </div>
+    //   ))}
+    // </div>
     <div>
-      <div>
-        {Object.keys(groupedData).map((date) => (
-          <div key={date} className="notificatons">
-            <div className="separator">
-              <div className="line"></div>
-              <p className="ms-3 me-3 mt-3">{date}</p>
-              <div className="line"></div>
-            </div>
-            {groupedData[date].map((notification, index) => (
-              <Table
-                responsive
-                hover
-                className={`mt-2 notification-bar ${selectedRow === index ? 'selected-row' : ''}`}
-                striped
-                bordered={false}
-                key={index}
-                onClick={() => {
-                  if (selectedRow === index) {
-                    setSelectedRow(null);
-                  } else {
-                    setSelectedRow(index);
-                  }
-                }}>
-                <tr className="pt-3">
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <Image src={notification.picture} className="ps-2 p-0" />
-                    </div>
-                  </td>
-                  <td>
-                    <div className="d-flex flex-column align-items-start justify-content-center ms-3 p-0">
-                      <p className="m-0 p-0 user-name text-14 font-700 grey">Customer Name</p>
-                      <p className="m-0 pt-2 font-14-20">{notification.name}</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="d-flex flex-column align-items-start justify-content-center ms-3 p-0">
-                      <p className="m-0 p-0 user-name text-14 font-700 grey">Branch Location</p>
-                      <p className="m-0 pt-2 font-14-20">{notification.location}</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="d-flex flex-column align-items-start justify-content-center ms-3 p-0">
-                      <p className="m-0 p-0 user-name text-14 font-700 grey">Space Type</p>
-                      <p className="m-0 pt-2 font-14-20">{notification.spacetype}</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="d-flex flex-column align-items-start justify-content-center ms-3 p-0">
-                      <p className="m-0 p-0 user-name text-14 font-700 grey">Booking Time & Date</p>
-                      <p className="m-0 pt-2 font-14-20">{notification.Bookingtime}</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="d-flex flex-column align-items-start justify-content-center ms-3 p-0">
-                      <p
-                        className={`m-0 user-name ${
-                          notification.status === 'cancelled' ? 'status-notpaid' : 'status-paid'
-                        }`}>
-                        {notification.status}
-                      </p>
-                    </div>
-                  </td>
-                  <td>
-                    {selectedRow === index && (
-                      <Button
-                        variant="link"
-                        onClick={() => handleShowCard(notification)}
-                        className="d-flex justify-content-end">
-                        {/* 3-dot button */}
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="4"
-                          height="16"
-                          viewBox="0 0 4 16"
-                          fill="none">
-                          <circle cx="2" cy="2" r="2" fill="#171D25" />
-                          <circle cx="2" cy="8" r="2" fill="#171D25" />
-                          <circle cx="2" cy="14" r="2" fill="#171D25" />
-                        </svg>
-                      </Button>
-                    )}
-                  </td>
-                </tr>
-              </Table>
-            ))}
+      {data.map((group, groupIndex) => (
+        <div key={groupIndex} className="notificatons row">
+          <div className="separator">
+            <div className="line"></div>
+            <p className="ms-3 me-3 mt-3">{group.date}</p>
+            <div className="line"></div>
           </div>
-        ))}
-      </div>
-      {showCard && <CardComponent links={selectedCardData} onClose={() => setShowCard(false)} />}
+          {group.notifications.map((notification, index) => (
+            <Col
+              md={6}
+              key={index}
+              onClick={() => {
+                if (selectedRow === index) {
+                  setSelectedRow(null);
+                } else {
+                  setSelectedRow(index);
+                }
+              }}
+              className="my-2 py-1">
+              <div
+                className={`notification-bar p-3 ${selectedRow === index ? 'selected-row' : ''} ${
+                  notification.status.toLowerCase() === 'paid' ? 'read' : 'unread'
+                }`}>
+                <Image
+                  src={notification.picture}
+                  className="rounded-2"
+                  style={{ width: '56px', height: '56px' }}
+                />
+                <div className="d-flex flex-column align-items-start justify-content-center ms-3 p-0 w-100">
+                  <div className="d-flex align-items-start justify-content-between w-100">
+                    <div>
+                      <p className="m-0 custom-heading-font fw-bold text-capitalize">
+                        {notification.name}
+                      </p>
+                      <p className="user-name text-14 grey m-0">{notification.Bookingtime}</p>
+                    </div>
+                    <div className="threeDots-dropdown">
+                      <Dropdown>
+                        <Dropdown.Toggle id="dropdown-basic" className="border-0">
+                          <Image alt="gallery" src={threeDots} className=" p-2" />
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu></Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                  </div>
+                  {notification.type === 'chat' ? (
+                    <div className="d-flex flex-column align-items-start justify-content-center pt-3 gap-1">
+                      <p className="m-0 user-name text-14 font-700 grey">Message</p>
+                      <span className="custom-lineheight"></span>
+                    </div>
+                  ) : (
+                    <div className="d-flex align-items-start justify-content-between gap-3 w-100 pt-3 flex-wrap">
+                      <div className="d-flex flex-column align-items-start justify-content-center gap-1">
+                        <p className="m-0 user-name text-14 font-700 grey">Status</p>
+                        <p className="m-0 font-14-20 text-capitalize">{notification.status}</p>
+                      </div>
+                      <div className="d-flex flex-column align-items-start justify-content-center gap-1">
+                        <p className="m-0 user-name text-14 font-700 grey">Category</p>
+                        <p className="m-0 font-14-20">{notification.spacetype}</p>
+                      </div>
+                      <div className="d-flex flex-column align-items-start justify-content-center gap-1">
+                        <p className="m-0 user-name text-14 font-700 grey">Total Amount</p>
+                        <p className="m-0 font-14-20">${notification.price}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </Col>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };
