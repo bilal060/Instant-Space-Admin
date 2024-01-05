@@ -92,7 +92,7 @@ function PaymentHistoryTable({ dayValue, page, short, filterState, setPage }) {
           </div>
         </div>
       )}
-      {!short && bookings.totalRecords > 10 ? (
+      {!short && bookings?.totalRecords > 10 ? (
         <PaginationControl
           page={page}
           between={3}
