@@ -1,83 +1,74 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Image, Row } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
 import '../assets/css/topbar.css';
 import LogoImg from '../assets/images/logo.svg';
 import LogoIcon from '../assets/images/logoIcon.svg';
-import userImage from '../assets/images/user-img.png';
-// import notification from '../assets/images/icons/notifications.svg';
 import notificationImage from '../assets/images/icons/notifications.svg';
-
 import SettingsIcon from '../assets/images/icons/Settings';
 import LogoutIcon from '../assets/images/icons/Logout';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { userLogout } from '../store/storeIndex';
+import { postNotification, userLogout } from '../store/storeIndex';
 import { useSelector } from 'react-redux';
-// import { postNotification } from '../store/storeIndex';
 import TopBarPopup from './TopBarPopup';
-//import { getNotification } from '../store/notification/actions/actionCreators';
+import { getNotification } from '../store/notification/actions/actionCreators';
+import ImageDisplay from './Image';
 
 const TopBar = () => {
   const user = useSelector((state) => state.user.user);
   const isLogin = useSelector((state) => state.user.isLogin);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const socket = useSelector((state) => state.socket.socket);
+  const notification = useSelector((state) => state.notification.notifications);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  // const notification = useSelector((state) => state.notification?.notifications);
-  // const socket = useSelector((state) => state.socket.socket);
   const [countOfUnreadMessages, setCountOfUnreadMessages] = useState(5);
+
   const toggleDropdown = () => {
     if (!dropdownOpen) {
       setCountOfUnreadMessages(0);
     }
     setDropdownOpen(!dropdownOpen);
   };
-  // const [notifications] = useState(10);
+  useEffect(() => {
+    if (socket === null) return;
 
-  // useEffect(() => {
-  //   dispatch(getNotification());
-  // }, [dispatch]);
+    socket.on('getNotification', (data) => {
+      if (data.status === 'pending') {
+        const notificationData = {
+          bookingId: data.bookingId,
+          sender: data.sender,
+          details: data.details,
+          receiver: data.receiver,
+          type: data.type
+        };
+        dispatch(postNotification(notificationData));
+      } else {
+        const notificationData = {
+          bookingId: data.bookingId,
+          sender: data.sender,
+          details: data.details,
+          status: data.status,
+          receiver: data.receiver,
+          type: data.type
+        };
+        dispatch(postNotification(notificationData));
+      }
+    });
 
-  // useEffect(() => {
-  //   if (socket === null) return;
+    return () => {
+      socket.off('getNotification');
+    };
+  }, [socket, dispatch, notification]);
 
-  //   socket.on('getNotification', (data) => {
-  //     if (data.type === 'chat') {
-  //       const notificationData = {
-  //         conversationId: data.conversationId,
-  //         sender: data.sender,
-  //         receiver: data.receiver,
-  //         message: data.message,
-  //         type: data.type
-  //       };
-  //       dispatch(postNotification(notificationData));
-  //     } else if (data.status === 'pending') {
-  //       const notificationData = {
-  //         bookingId: data.bookingId,
-  //         sender: data.sender,
-  //         details: data.details,
-  //         receiver: data.receiver,
-  //         type: data.type
-  //       };
-  //       dispatch(postNotification(notificationData));
-  //     } else {
-  //       const notificationData = {
-  //         bookingId: data.bookingId,
-  //         sender: data.sender,
-  //         details: data.details,
-  //         status: data.status,
-  //         receiver: data.receiver,
-  //         type: data.type
-  //       };
-  //       dispatch(postNotification(notificationData));
-  //     }
-  //   });
+  useEffect(() => {
+    setCountOfUnreadMessages(notification.filter((obj) => obj.isRead === false).length);
+  }, [notification]);
 
-  //   return () => {
-  //     socket.off('getNotification');
-  //   };
-  // }, [socket, dispatch, notification]);
+  useEffect(() => {
+    dispatch(getNotification());
+  }, [dispatch]);
 
   return (
     <Row className="py-3 px-4 m-0 topbar">
@@ -89,19 +80,6 @@ const TopBar = () => {
       </Col>
       <Col className="d-flex align-items-center justify-content-end">
         <div className="bar-icons">
-          <Link to="/dashboard/notifications"></Link>
-
-          {/* <Dropdown>
-            <Dropdown.Toggle className="top-dropbtn-style" id="dropdown-basic-button">
-              <div className="notifiy-dropbtn-style">
-                <Image fluid src={notification} loading="lazy" />
-                <p>{notifications}</p>
-              </div>
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="custom-notif-bar py-5">
-              <TopBarPopup />
-            </Dropdown.Menu>
-          </Dropdown> */}
           <Dropdown show={dropdownOpen} onToggle={toggleDropdown}>
             <Dropdown.Toggle className="top-dropbtn-style" id="dropdown-basic-button">
               <div className="notifiy-dropbtn-style">
@@ -113,6 +91,7 @@ const TopBar = () => {
               <TopBarPopup />
             </Dropdown.Menu>
           </Dropdown>
+
           <Dropdown className="user-dropdown">
             <Dropdown.Toggle className="dropbtn-style" id="dropdown-menu-align-end">
               <div className="d-flex justify-content-between align-items-center gap-3">
@@ -126,16 +105,11 @@ const TopBar = () => {
                     {(isLogin && user && user.role) || 'Role'}
                   </p>
                 </div>
-                <Image
-                  width={56}
-                  height={56}
-                  src={
-                    isLogin && user.photo
-                      ? `${process.env.REACT_APP_SERVER_URL}${user.photo}`
-                      : userImage
-                  }
+                <ImageDisplay
+                  src={`${process.env.REACT_APP_SERVER_URL}${user.photo}`}
+                  style={{ width: '56px', height: '56px' }}
+                  className="rounded-circle"
                   loading="lazy"
-                  className="rounded-pill"
                 />
               </div>
             </Dropdown.Toggle>

@@ -201,7 +201,7 @@ const PurchaseSale = () => {
   return (
     <div className="h-100">
       <div className="heading text-24 mb-4">Transaction Statistics</div>
-      {Earnings > 0 ? (
+      {Earnings?.length > 0 ? (
         <div className="b-chart section-main border-0">
           <div className=" d-flex justify-content-between">
             <div className="card-label rounded-3 my-2 px-2 d-flex justify-content-center bg-light">

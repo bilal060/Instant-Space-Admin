@@ -16,6 +16,8 @@ import ChatReducer from './store/chat/reducers/ChatReducer';
 import CategoryReducer from './store/category/reducers/CategoryReducer';
 import SpaceReducer from './store/space/reducers/SpaceReducer';
 import BookingReducer from './store/booking/reducers/BookingReducer';
+import SocketReducer from './store/socket/reducers/SocketReducer';
+import NotificationReducer from './store/notification/reducers/NotificationReducer';
 
 const { persistStore, persistReducer } = require('redux-persist');
 
@@ -25,7 +27,9 @@ const rootReducer = combineReducers({
   category: CategoryReducer,
   space: SpaceReducer,
   booking: BookingReducer,
-  Earnings: UserEarnings
+  Earnings: UserEarnings,
+  notification: NotificationReducer,
+  socket: SocketReducer
 });
 
 let devtools, store;
@@ -36,7 +40,8 @@ if (isClient) {
   const storage = require('redux-persist/lib/storage').default;
   const persistConfig = {
     key: 'instant-space',
-    storage
+    storage,
+    blacklist: ['notification', 'socket']
   };
 
   store = createStore(

@@ -11,11 +11,11 @@ import LanguageIcon from '../../assets/images/LanguageOptionIcon.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUserProfile } from '../../store/storeIndex';
 import '../../assets/css/account-settings.css';
-import userimage from '../../assets/images/user-image.png';
-
 import SelectField from '../../shared/SelectField';
 import { useDropzone } from 'react-dropzone';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
+import ImageDisplay from '../../shared/Image';
 
 export const newPasswordValidationSchema = Yup.object().shape({
   userName: Yup.string().required('Name is Required'),
@@ -30,11 +30,11 @@ const AccountNewPassword = () => {
   const token = useSelector((state) => state.user.token);
   const userDetails = useSelector((state) => state.user.user);
   const [phone, setPhone] = useState(userDetails.phoneNo);
-
+  console.log(userDetails);
   const initialValues = {
     userName: userDetails.fullName,
     email: userDetails.email,
-    mydate: userDetails.dob,
+    mydate: moment(userDetails.dob).isValid() ? moment(userDetails.dob).format('YYYY-MM-DD') : '',
     bio: userDetails.bio,
     language: userDetails.language
   };
@@ -78,15 +78,11 @@ const AccountNewPassword = () => {
             }}>
             <>
               {docFiles.length === 0 ? (
-                <Image
-                  src={
-                    userDetails.photo
-                      ? `${process.env.REACT_APP_SERVER_URL}${userDetails.photo}`
-                      : userimage
-                  }
+                <ImageDisplay
+                  src={`${process.env.REACT_APP_SERVER_URL}${userDetails.photo}`}
                   alt="user-image"
                   loading="lazy"
-                  className="w-100"
+                  className="w-100 h-100"
                 />
               ) : (
                 <Image
@@ -213,11 +209,9 @@ const AccountNewPassword = () => {
                         height={20}
                       />
                     }
-                    // value=""
                     placeholder="Date of Birth"
                     name="mydate"
-                    type="text"
-                    onFocus={(e) => (e.target.type = 'date')}
+                    type="date"
                   />
                 </div>
               </Col>

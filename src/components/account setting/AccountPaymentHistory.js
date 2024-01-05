@@ -23,7 +23,7 @@ const AccountPaymentHistory = () => {
   };
   return (
     <div>
-      <div className="content-head d-flex flex-column align-items-start mt-5 mb-3 w-100 gap-lg-3 gap-2">
+      <div className="content-head d-flex flex-column align-items-start mb-3 w-100 gap-lg-3 gap-2">
         <div className={`heading text-24 w-100`}>Payment History</div>
         <div className="content-head d-flex justify-content-between flex-sm-row flex-column align-items-end w-100 gap-lg-3 gap-2">
           <MyDropDown
