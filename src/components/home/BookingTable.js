@@ -6,9 +6,12 @@ import '../../assets/css/table.css';
 import threeDots from '../../assets/images/icons/threeDots.svg';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { DeleteBooking, getAllBookings } from '../../store/booking/actions/actionCreators';
+import { getAllBookings } from '../../store/booking/actions/actionCreators';
 import { PaginationControl } from 'react-bootstrap-pagination-control';
 import ImageDisplay from '../../shared/Image';
+import Toast from '../../shared/Toast';
+import Axios from '../../axios/Axios';
+import { getUserEarning } from '../../store/storeIndex';
 
 const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
   const dispatch = useDispatch();
@@ -20,13 +23,18 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
   const [deletebookingId, setDeletebookingId] = useState('');
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const socket = useSelector((state) => state.socket.socket);
+  const [bookingDetails, setBookingDetails] = useState('');
+  const [recieverId, setRecieverId] = useState('');
 
   useEffect(() => {
     dispatch(getAllBookings(token, userRole, page, dayValue));
   }, []);
 
-  const deleteBookingHandler = (id) => {
+  const RejectBookingHandler = (id, details, receiverId) => {
     setDeletebookingId(id);
+    setBookingDetails(details);
+    setRecieverId(receiverId);
     handleShow();
   };
   const pageHandler = (page) => {
@@ -34,11 +42,42 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
     dispatch(getAllBookings(token, userRole, page, dayValue));
   };
 
-  const AcceptBooking = (bookingId) => {
+  const AcceptBooking = (id, details, receiverId) => {
     const data = {
       status: 'approved'
     };
-    dispatch(DeleteBooking(bookingId, token, data, handleClose, page, userRole, dayValue));
+    Axios.patch(`bookings/update_status/${id}`, data, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(() => {
+        dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
+        dispatch(getUserEarning(token));
+        handleClose();
+        if (socket === null) return;
+        socket.emit('bookingStatus', [
+          {
+            bookingId: id,
+            sender: userId,
+            status: data.status,
+            details: details,
+            receiver: receiverId,
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            bookingId: id,
+            sender: userId,
+            status: data.status,
+            details: details,
+            receiver: '6492979941c63404440aa0c2',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }
+        ]);
+      })
+      .catch((error) => {
+        Toast.error(error.response?.data.message);
+      });
   };
   const initialValues = {
     notes: ''
@@ -51,19 +90,51 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
       notes: values.notes,
       status: 'rejected'
     };
-    dispatch(
-      DeleteBooking(
-        deletebookingId,
-        token,
-        data,
-        handleClose,
-        userId,
-        page,
-        userRole,
-        filterState,
-        dayValue
-      )
-    );
+    Axios.patch(`bookings/update_status/${deletebookingId}`, data, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(() => {
+        dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
+        dispatch(getUserEarning(token));
+        handleClose();
+        if (socket === null) return;
+        socket.emit('bookingStatus', [
+          {
+            bookingId: deletebookingId,
+            sender: userId,
+            status: data.status,
+            details: bookingDetails,
+            receiver: recieverId,
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            bookingId: deletebookingId,
+            sender: userId,
+            status: data.status,
+            details: bookingDetails,
+            receiver: '6492979941c63404440aa0c2',
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }
+        ]);
+      })
+      .catch((error) => {
+        Toast.error(error.response?.data.message);
+      });
+    // dispatch(
+    //   DeleteBooking(
+    //     deletebookingId,
+    //     token,
+    //     data,
+    //     handleClose,
+    //     userId,
+    //     page,
+    //     userRole,
+    //     filterState,
+    //     dayValue
+    //   )
+    // );
   };
   return (
     <div className="my-2">
@@ -166,7 +237,7 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
                                       <Dropdown.Item onClick={() => AcceptBooking(item._id)}>
                                         Approve
                                       </Dropdown.Item>
-                                      <Dropdown.Item onClick={() => deleteBookingHandler(item._id)}>
+                                      <Dropdown.Item onClick={() => RejectBookingHandler(item._id)}>
                                         Reject
                                       </Dropdown.Item>
                                     </Dropdown.Menu>
@@ -253,10 +324,20 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                      <Dropdown.Item onClick={() => AcceptBooking(item._id)}>
+                                      <Dropdown.Item
+                                        onClick={() =>
+                                          AcceptBooking(item._id, item.serviceId, item.userId._id)
+                                        }>
                                         Approve
                                       </Dropdown.Item>
-                                      <Dropdown.Item onClick={() => deleteBookingHandler(item._id)}>
+                                      <Dropdown.Item
+                                        onClick={() =>
+                                          RejectBookingHandler(
+                                            item._id,
+                                            item.serviceId,
+                                            item.userId._id
+                                          )
+                                        }>
                                         Reject
                                       </Dropdown.Item>
                                     </Dropdown.Menu>

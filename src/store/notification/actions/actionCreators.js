@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
 import * as actionTypes from './actionTypes';
 import Toast from '../../../shared/Toast';
-import Axios from '../../../axios/Axios';
 import axios from 'axios';
 
-export const getNotification = () => (dispatch) => {
+export const getNotification = (id) => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_SERVER_URL}api/v1/notification`, {
+    .get(`${process.env.REACT_APP_SERVER_URL}api/v1/notification/${id}`, {
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json'
@@ -23,14 +22,17 @@ export const getNotification = () => (dispatch) => {
     });
 };
 
-export const getPaginatedNotification = (page) => (dispatch) => {
+export const getPaginatedNotification = (page, id) => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_SERVER_URL}api/v1/notification${page ? `?page=${page}` : ''}`, {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json'
+    .get(
+      `${process.env.REACT_APP_SERVER_URL}api/v1/notification/${id}${page ? `?page=${page}` : ''}`,
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
-    })
+    )
     .then((response) => {
       dispatch({
         type: actionTypes.SET_PAGINATED_NOTIFICATIONS,

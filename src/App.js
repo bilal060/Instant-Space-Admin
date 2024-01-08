@@ -18,12 +18,19 @@ const AOS = require('aos');
 
 function App() {
   const isLogin = useSelector((state) => state.user.isLogin);
+  const User = useSelector((state) => state.user.user);
+  const socket = useSelector((state) => state.socket.socket);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isLogin) return;
     dispatch(setSocket(Socket));
   }, [isLogin, dispatch, Socket]);
+
+  useEffect(() => {
+    if (socket === null || !isLogin) return;
+    socket.emit('addNewUser', User._id);
+  }, [isLogin, socket, User._id]);
 
   useEffect(() => {
     AOS.init(

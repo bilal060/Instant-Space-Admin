@@ -24,6 +24,7 @@ const TopBar = () => {
   const notification = useSelector((state) => state.notification.notifications);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [countOfUnreadMessages, setCountOfUnreadMessages] = useState(5);
+  const User = useSelector((state) => state.user.user);
 
   const toggleDropdown = () => {
     if (!dropdownOpen) {
@@ -33,8 +34,8 @@ const TopBar = () => {
   };
   useEffect(() => {
     if (socket === null) return;
-
     socket.on('getNotification', (data) => {
+      console.log(data);
       if (data.status === 'pending') {
         const notificationData = {
           bookingId: data.bookingId,
@@ -67,7 +68,7 @@ const TopBar = () => {
   }, [notification]);
 
   useEffect(() => {
-    dispatch(getNotification());
+    dispatch(getNotification(User._id));
   }, [dispatch]);
 
   return (
