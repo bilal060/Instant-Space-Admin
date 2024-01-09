@@ -8,8 +8,7 @@ const Usericon = () => {
         width="26"
         height="32"
         viewBox="0 0 26 32"
-        fill="none"
-      >
+        fill="none">
         <path
           fillRule="evenodd"
           clipRule="evenodd"

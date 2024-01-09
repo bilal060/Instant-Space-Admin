@@ -12,8 +12,11 @@ import emptyBooking from '../../assets/images/emptyBookingImage.svg';
 import threeDots from '../../assets/images/icons/threeDots.svg';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { DeleteBooking, getAllBookings } from '../../store/booking/actions/actionCreators';
+import { getAllBookings } from '../../store/booking/actions/actionCreators';
 import ImageDisplay from '../../shared/Image';
+import Toast from '../../shared/Toast';
+import { getUserEarning } from '../../store/storeIndex';
+import Axios from '../../axios/Axios';
 
 // import UserImage from '../../assets/images/icons/table.svg';
 
@@ -32,33 +35,50 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
   const token = useSelector((state) => state.user.token);
   const userId = useSelector((state) => state.user.user._id);
   const bookings = useSelector((state) => state.booking.bookings);
-  // const allUserBookings = useSelector((state) => state.booking);
-
+  const socket = useSelector((state) => state.socket.socket);
   const userRole = useSelector((state) => state.user.user.role);
-
   const [show, setShow] = useState(false);
   const [deletebookingId, setDeletebookingId] = useState('');
+  const [bookingDetails, setBookingDetails] = useState('');
+  const [recieverId, setRecieverId] = useState('');
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const deleteBookingHandler = (id) => {
+  const RejectBookingHandler = (id, details, receiverId) => {
     setDeletebookingId(id);
+    setBookingDetails(details);
+    setRecieverId(receiverId);
     handleShow();
   };
 
-  const AcceptBooking = (id) => {
+  const AcceptBooking = (id, details, receiverId) => {
     const data = {
       status: 'approved'
     };
-    dispatch(
-      DeleteBooking(id, token, data, handleClose, userId, page, userRole, filterState, dayValue)
-    );
+    Axios.patch(`bookings/update_status/${id}`, data, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(() => {
+        dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
+        dispatch(getUserEarning(token));
+        handleClose();
+        if (socket === null) return;
+        socket.emit('bookingStatus', {
+          bookingId: id,
+          sender: userId,
+          status: data.status,
+          details: details,
+          receiver: receiverId,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
+      })
+      .catch((error) => {
+        Toast.error(error.response?.data.message);
+      });
   };
 
-  // const pageHandler = (page) => {
-  //   setPage(page);
-  //   dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
-  // };
   const pageHandler = (page) => {
     setPage(page);
     if (userRole === 'Manager') {
@@ -81,21 +101,28 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
       notes: values.notes,
       status: 'rejected'
     };
-    dispatch(
-      DeleteBooking(
-        deletebookingId,
-        token,
-        data,
-        handleClose,
-        userId,
-        page,
-        userRole,
-        filterState,
-        dayValue
-      )
-    );
+    Axios.patch(`bookings/update_status/${deletebookingId}`, data, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(() => {
+        dispatch(getAllBookings(userId, token, userRole, page, filterState, dayValue));
+        dispatch(getUserEarning(token));
+        handleClose();
+        if (socket === null) return;
+        socket.emit('bookingStatus', {
+          bookingId: deletebookingId,
+          sender: userId,
+          status: data.status,
+          details: bookingDetails,
+          receiver: recieverId,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
+      })
+      .catch((error) => {
+        Toast.error(error.response?.data.message);
+      });
   };
-
   return (
     <div className="bg-white rounded custom-table">
       {Object.keys(bookings)?.length > 0 && bookings.bookings?.length > 0 ? (
@@ -190,10 +217,16 @@ function BookingTable({ filterState, dayValue, page, setPage }) {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                              <Dropdown.Item onClick={() => AcceptBooking(item._id)}>
+                              <Dropdown.Item
+                                onClick={() =>
+                                  AcceptBooking(item._id, item.serviceId, item.userId._id)
+                                }>
                                 Approve
                               </Dropdown.Item>
-                              <Dropdown.Item onClick={() => deleteBookingHandler(item._id)}>
+                              <Dropdown.Item
+                                onClick={() =>
+                                  RejectBookingHandler(item._id, item.serviceId, item.userId._id)
+                                }>
                                 Reject
                               </Dropdown.Item>
                             </Dropdown.Menu>

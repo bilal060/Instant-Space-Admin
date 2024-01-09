@@ -32,8 +32,7 @@ const VerifyAccountOtp = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={otpValidationSchema}
-          onSubmit={submitHandler}
-        >
+          onSubmit={submitHandler}>
           {({ touched, errors }) => (
             <Form action="" className="text-light-black">
               <Row className="align-items-start mb-4 pb-3">
@@ -75,8 +74,7 @@ const VerifyAccountOtp = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={otpValidationSchema}
-          onSubmit={submitHandler}
-        >
+          onSubmit={submitHandler}>
           {({ touched, errors }) => (
             <Form action="" className="text-light-black">
               <Row className="align-items-start mb-4 pb-3">

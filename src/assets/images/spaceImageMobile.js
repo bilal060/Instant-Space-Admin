@@ -83,8 +83,7 @@ const SpaceImageMobile = () => {
           x={38}
           y={8}
           width={138}
-          height={302}
-        >
+          height={302}>
           <path
             d="M161.489 8.73563H142.282C142.14 8.73451 142 8.76123 141.87 8.81424C141.739 8.86725 141.62 8.9455 141.52 9.04441C141.42 9.14333 141.341 9.26092 141.288 9.39037C141.234 9.51982 141.207 9.65853 141.208 9.79841V14.8592C141.21 15.6977 141.046 16.5285 140.724 17.304C140.402 18.0795 139.929 18.7846 139.332 19.3791C138.735 19.9736 138.025 20.4457 137.244 20.7687C136.462 21.0916 135.624 21.259 134.777 21.2612H78.3299C77.4831 21.259 76.6452 21.0916 75.8637 20.7687C75.0823 20.4457 74.3726 19.9736 73.7755 19.3791C73.1783 18.7846 72.7052 18.0795 72.3832 17.304C72.0612 16.5285 71.8969 15.6977 71.8991 14.8592V9.79841C71.8991 9.51655 71.7859 9.24622 71.5847 9.04691C71.3834 8.8476 71.1105 8.73563 70.8259 8.73563H51.6097C49.8304 8.73895 48.0693 9.08941 46.4268 9.76698C44.7844 10.4446 43.2929 11.4359 42.0376 12.6845C40.7822 13.9331 39.7876 15.4144 39.1106 17.0438C38.4336 18.6732 38.0874 20.4187 38.0918 22.1805V295.828C38.0874 297.589 38.4336 299.335 39.1106 300.964C39.7876 302.594 40.7822 304.075 42.0376 305.324C43.2929 306.572 44.7844 307.564 46.4268 308.241C48.0693 308.919 49.8304 309.269 51.6097 309.273H161.489C163.268 309.269 165.03 308.919 166.672 308.241C168.314 307.564 169.806 306.572 171.061 305.324C172.317 304.075 173.311 302.594 173.988 300.964C174.665 299.335 175.011 297.589 175.007 295.828V22.1805C175.011 20.4187 174.665 18.6732 173.988 17.0438C173.311 15.4144 172.317 13.9331 171.061 12.6845C169.806 11.4359 168.314 10.4446 166.672 9.76698C165.03 9.08941 163.268 8.73895 161.489 8.73563Z"
             fill="white"
@@ -101,8 +100,7 @@ const SpaceImageMobile = () => {
             width="214.92"
             height="37.032"
             filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
+            colorInterpolationFilters="sRGB">
             <feFlood floodOpacity={0} result="BackgroundImageFix" />
             <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
             <feGaussianBlur stdDeviation={5} result="effect1_foregroundBlur_545_3856" />
@@ -116,8 +114,7 @@ const SpaceImageMobile = () => {
             y1="75.6754"
             x2="22.5379"
             y2="62.942"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop />
             <stop offset="0.09" stopColor="#282D28" />
             <stop offset="0.14" stopColor="#383F37" />
@@ -139,8 +136,7 @@ const SpaceImageMobile = () => {
             y1="58.2094"
             x2="28.7796"
             y2="80.4432"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop offset="0.03" />
             <stop offset="0.13" stopColor="#383F37" />
             <stop offset="0.47" stopColor="#B6BFB1" />
@@ -157,8 +153,7 @@ const SpaceImageMobile = () => {
             y1="48.856"
             x2="26.6214"
             y2="44.4525"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop />
             <stop offset="0.09" stopColor="#282D28" />
             <stop offset="0.14" stopColor="#383F37" />
@@ -180,8 +175,7 @@ const SpaceImageMobile = () => {
             y1="43.2341"
             x2="28.7795"
             y2="50.0831"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop offset="0.03" />
             <stop offset="0.13" stopColor="#383F37" />
             <stop offset="0.47" stopColor="#B6BFB1" />
@@ -198,8 +192,7 @@ const SpaceImageMobile = () => {
             y1="107.823"
             x2="22.5379"
             y2="95.0897"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop />
             <stop offset="0.09" stopColor="#282D28" />
             <stop offset="0.14" stopColor="#383F37" />
@@ -221,8 +214,7 @@ const SpaceImageMobile = () => {
             y1="90.3703"
             x2="28.7795"
             y2="112.604"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop offset="0.03" />
             <stop offset="0.13" stopColor="#383F37" />
             <stop offset="0.47" stopColor="#B6BFB1" />
@@ -239,8 +231,7 @@ const SpaceImageMobile = () => {
             y1="89.4029"
             x2="174.036"
             y2="73.2625"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop />
             <stop offset="0.09" stopColor="#282D28" />
             <stop offset="0.14" stopColor="#383F37" />
@@ -262,8 +253,7 @@ const SpaceImageMobile = () => {
             y1="67.1076"
             x2="181.961"
             y2="95.6169"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop offset="0.03" />
             <stop offset="0.13" stopColor="#383F37" />
             <stop offset="0.47" stopColor="#B6BFB1" />
@@ -280,8 +270,7 @@ const SpaceImageMobile = () => {
             y1="84.5378"
             x2="178.094"
             y2="71.8044"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop />
             <stop offset="0.09" stopColor="#282D28" />
             <stop offset="0.14" stopColor="#383F37" />
@@ -303,8 +292,7 @@ const SpaceImageMobile = () => {
             y1="67.0633"
             x2="184.313"
             y2="89.2972"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop offset="0.03" />
             <stop offset="0.13" stopColor="#383F37" />
             <stop offset="0.47" stopColor="#B6BFB1" />
@@ -321,8 +309,7 @@ const SpaceImageMobile = () => {
             y1="158.999"
             x2="184.33"
             y2="158.999"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop stopColor="#B6BFB1" />
             <stop offset="0.05" stopColor="#B3BCAE" />
             <stop offset="0.09" stopColor="#ABB4A6" />
@@ -342,8 +329,7 @@ const SpaceImageMobile = () => {
             y1="159.005"
             x2="183.844"
             y2="159.005"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop offset="0.04" stopColor="#BDBDBD" />
             <stop offset="0.05" stopColor="#B5B5B5" />
             <stop offset="0.09" stopColor="#989898" />
@@ -360,8 +346,7 @@ const SpaceImageMobile = () => {
             y1="159.012"
             x2="181.469"
             y2="159.012"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop offset="0.08" stopColor="#40403F" />
             <stop offset="0.5" stopColor="#40403F" />
             <stop offset="0.75" stopColor="#3E3E3D" />
@@ -377,8 +362,7 @@ const SpaceImageMobile = () => {
             y1="158.996"
             x2="180.543"
             y2="158.996"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop />
             <stop offset="0.13" stopColor="#010101" />
             <stop offset="0.27" stopColor="#080808" />
@@ -391,8 +375,7 @@ const SpaceImageMobile = () => {
             y1="12.3446"
             x2="102.46"
             y2="15.651"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop stopColor="#272728" />
             <stop offset="0.68" stopColor="#4E4C4E" />
             <stop offset="0.99" stopColor="#615F61" />
@@ -403,8 +386,7 @@ const SpaceImageMobile = () => {
             y1="11.706"
             x2="120.819"
             y2="15.8812"
-            gradientUnits="userSpaceOnUse"
-          >
+            gradientUnits="userSpaceOnUse">
             <stop stopColor="#101012" />
             <stop offset="0.49" stopColor="#373638" />
             <stop offset="0.99" stopColor="#615F61" />
@@ -415,8 +397,7 @@ const SpaceImageMobile = () => {
             cy={0}
             r={1}
             gradientUnits="userSpaceOnUse"
-            gradientTransform="translate(120.812 13.6857) scale(1.45656 1.44233)"
-          >
+            gradientTransform="translate(120.812 13.6857) scale(1.45656 1.44233)">
             <stop offset="0.13" stopColor="#1B1F38" />
             <stop offset="0.88" stopColor="#100028" />
           </radialGradient>

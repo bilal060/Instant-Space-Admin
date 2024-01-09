@@ -154,8 +154,7 @@ const CustomerMonthlyModel = ({ setLgShow, setCardAlert, singleSpace }) => {
             ? errorSchema
             : warehouseErrorSchema
         }
-        onSubmit={loginHandler}
-      >
+        onSubmit={loginHandler}>
         {() => (
           <Form className="w-100">
             <Row className="mx-0">
@@ -267,15 +266,13 @@ const CustomerMonthlyModel = ({ setLgShow, setCardAlert, singleSpace }) => {
                         className={`rounded-2 bg-cards pt-1 ps-2 pe-2 position-relative ${
                           selectedCard === card.id ? 'selected' : ''
                         }`}
-                        onClick={() => handleCardClick(card.id)}
-                      >
+                        onClick={() => handleCardClick(card.id)}>
                         <Image src={card.brand === 'Visa' ? visacard : mastercard} />
                         <span className="text-14 text-color ps-2">{card.brand}</span>
                         <p className="font-14-100 pt-2 pb-2">{`Ending in ${card.last4}`}</p>
                         <span
                           className="position-absolute end-0 top-0"
-                          onClick={() => DeleteCard(card.id)}
-                        >
+                          onClick={() => DeleteCard(card.id)}>
                           <MdDeleteForever />
                         </span>
                         <input
@@ -301,8 +298,7 @@ const CustomerMonthlyModel = ({ setLgShow, setCardAlert, singleSpace }) => {
               <Col md="6" sm="4">
                 <Button
                   className="px-2 py-2 rounded btn-orange-outline bg-lightBlue w-100"
-                  onClick={() => setLgShow(false)}
-                >
+                  onClick={() => setLgShow(false)}>
                   Cancel
                 </Button>
               </Col>
@@ -310,8 +306,7 @@ const CustomerMonthlyModel = ({ setLgShow, setCardAlert, singleSpace }) => {
                 <Button
                   type="submit"
                   className="px-2 py-2 rounded btn-blue w-100"
-                  disabled={!monthValue}
-                >
+                  disabled={!monthValue}>
                   Book Now
                 </Button>
               </Col>

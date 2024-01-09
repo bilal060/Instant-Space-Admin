@@ -71,8 +71,7 @@ const CardComponent = ({ onClick, ...props }) => {
                   ? 'outline-warning'
                   : 'outline-success'
             } `}
-            style={{ width: 'max-content', right: '12px', left: 'unset', top: '12px' }}
-          >
+            style={{ width: 'max-content', right: '12px', left: 'unset', top: '12px' }}>
             <p className=" rounded-lg px-2 py-1 text-14 mb-0 text-capitalize">{props.status}</p>
           </Button>
         )}
@@ -169,8 +168,7 @@ const CardComponent = ({ onClick, ...props }) => {
                   onHide={handleClose}
                   backdrop="static"
                   keyboard={false}
-                  className="delete-modal"
-                >
+                  className="delete-modal">
                   <Modal.Header closeButton>
                     <Modal.Title>
                       <div className="fw-bold">Delete Space</div>

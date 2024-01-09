@@ -20,7 +20,11 @@
 }
 
 .notification-bar.unread {
-  background: radial-gradient(circle at 0% 0.5%, rgb(241, 241, 242) 0.1%, rgb(224, 226, 228) 100.2%);
+  background: radial-gradient(
+    circle at 0% 0.5%,
+    rgb(241, 241, 242) 0.1%,
+    rgb(224, 226, 228) 100.2%
+  );
   font-weight: 900 !important;
 }
 
@@ -97,8 +101,6 @@
 }
 
 @media (min-width: 575.98px) {
-
-
   .p-0 {
     padding: 0 !important;
     margin: 0 !important;
@@ -118,7 +120,8 @@
   background-color: #e2e2e2 !important;
 }
 
-:is(.notification-bar:focus, .notification-bar:active, .notification-bar:hover) .threeDots-dropdown {
+:is(.notification-bar:focus, .notification-bar:active, .notification-bar:hover)
+  .threeDots-dropdown {
   display: block !important;
 }
 

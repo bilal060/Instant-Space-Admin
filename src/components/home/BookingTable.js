@@ -54,26 +54,15 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
         dispatch(getUserEarning(token));
         handleClose();
         if (socket === null) return;
-        socket.emit('bookingStatus', [
-          {
-            bookingId: id,
-            sender: userId,
-            status: data.status,
-            details: details,
-            receiver: receiverId,
-            createdAt: new Date(),
-            updatedAt: new Date()
-          },
-          {
-            bookingId: id,
-            sender: userId,
-            status: data.status,
-            details: details,
-            receiver: '6492979941c63404440aa0c2',
-            createdAt: new Date(),
-            updatedAt: new Date()
-          }
-        ]);
+        socket.emit('bookingStatus', {
+          bookingId: id,
+          sender: userId,
+          status: data.status,
+          details: details,
+          receiver: receiverId,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
       })
       .catch((error) => {
         Toast.error(error.response?.data.message);
@@ -98,43 +87,19 @@ const BookingTable = ({ dayValue, page, filterState, short, setPage }) => {
         dispatch(getUserEarning(token));
         handleClose();
         if (socket === null) return;
-        socket.emit('bookingStatus', [
-          {
-            bookingId: deletebookingId,
-            sender: userId,
-            status: data.status,
-            details: bookingDetails,
-            receiver: recieverId,
-            createdAt: new Date(),
-            updatedAt: new Date()
-          },
-          {
-            bookingId: deletebookingId,
-            sender: userId,
-            status: data.status,
-            details: bookingDetails,
-            receiver: '6492979941c63404440aa0c2',
-            createdAt: new Date(),
-            updatedAt: new Date()
-          }
-        ]);
+        socket.emit('bookingStatus', {
+          bookingId: deletebookingId,
+          sender: userId,
+          status: data.status,
+          details: bookingDetails,
+          receiver: recieverId,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        });
       })
       .catch((error) => {
         Toast.error(error.response?.data.message);
       });
-    // dispatch(
-    //   DeleteBooking(
-    //     deletebookingId,
-    //     token,
-    //     data,
-    //     handleClose,
-    //     userId,
-    //     page,
-    //     userRole,
-    //     filterState,
-    //     dayValue
-    //   )
-    // );
   };
   return (
     <div className="my-2">

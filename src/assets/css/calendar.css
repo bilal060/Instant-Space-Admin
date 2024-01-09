@@ -91,7 +91,7 @@ tr .fc-day-other:hover {
   height: 35.5rem !important;
 }
 
-.fc-scroller-harness>.fc-scroller {
+.fc-scroller-harness > .fc-scroller {
   overflow: hidden !important;
   scroll-behavior: none !important;
 }

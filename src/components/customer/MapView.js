@@ -73,8 +73,7 @@ const MapView = ({ length }) => {
                 center={center}
                 zoom={4}
                 onClick={() => setActiveMarker(null)}
-                mapContainerStyle={containerStyle}
-              >
+                mapContainerStyle={containerStyle}>
                 {allSpaces.length > 0 &&
                   allSpaces.map((space, index) => (
                     <MarkerF
@@ -83,13 +82,11 @@ const MapView = ({ length }) => {
                         lat: space.location.coordinates[1],
                         lng: space.location.coordinates[0]
                       }}
-                      onClick={() => handleActiveMarker(space._id)}
-                    >
+                      onClick={() => handleActiveMarker(space._id)}>
                       {activeMarker === space._id ? (
                         <InfoWindowF
                           onCloseClick={() => setActiveMarker(null)}
-                          mapContainerStyle={{ width: '400px' }}
-                        >
+                          mapContainerStyle={{ width: '400px' }}>
                           <>
                             <Image
                               src={`${process.env.REACT_APP_SERVER_URL}${space.images[0]}`}
