@@ -5,7 +5,8 @@ const initialState = {
   user: {},
   cards: [],
   managers: {},
-  users: {}
+  users: {},
+  usersetting: {}
 };
 
 const UserReducer = (state = initialState, action) => {
@@ -40,6 +41,11 @@ const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload
+      };
+    case actionTypes.USER_SETTING:
+      return {
+        ...state,
+        usersetting: action.payload
       };
     case actionTypes.USER_LOGOUT:
       return {

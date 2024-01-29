@@ -9,16 +9,7 @@
   box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.05);
   position: sticky;
   z-index: 99;
-  height: 88px;
-}
-
-.font-weight-500 {
-  font-weight: 500;
-}
-
-.font-12 {
-  font-size: 12px;
-  line-height: 20px;
+  height: 80px;
 }
 
 .custom-notif-bar {
@@ -33,6 +24,23 @@
 .custom-notif-bar .notifications {
   max-height: 300px;
   overflow-y: auto;
+}
+
+.user-image {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logo img {
+  height: 40px;
 }
 
 @media screen and (max-width: 600px) {
@@ -59,7 +67,7 @@
   }
 
   .logo {
-    display: block !important;
+    display: flex !important;
   }
 }
 

@@ -247,3 +247,36 @@ export const getAllUsers =
         console.log(error.response?.data);
       });
   };
+
+export const getUserSetting = (token, type) => (dispatch) => {
+  Axios.get(`setting/?type=${type}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then((response) => {
+      dispatch({
+        type: actionTypes.USER_SETTING,
+        payload: response.data
+      });
+    })
+    .catch((error) => {
+      Toast.error(error.response?.data?.message);
+      console.log(error.response?.data);
+    });
+};
+
+export const updateUserSetting = (token, data, id) => (dispatch) => {
+  Axios.patch(`setting/65b35d21daf3e34e4dbd34f2`, data, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then((response) => {
+      dispatch({
+        type: actionTypes.USER_SETTING,
+        payload: response.data
+      });
+      Toast.success(response?.data?.message);
+    })
+    .catch((error) => {
+      Toast.error(error.response?.data?.message);
+      console.log(error.response?.data);
+    });
+};

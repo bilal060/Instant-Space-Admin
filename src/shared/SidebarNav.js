@@ -15,7 +15,7 @@ const SidebarNav = () => {
   return (
     <Sidebar
       defaultCollapsed={useWindowDimensions()}
-      width="290px"
+      width="270px"
       collapsedWidth="65px"
       backgroundColor="#fff"
       className="main-navigation">

@@ -7,3 +7,4 @@ export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const USER_PAYMENT = 'USER_PAYMENT';
 export const ALL_USER = 'ALL_USER';
+export const USER_SETTING = 'USER_SETTING';
