@@ -8,7 +8,9 @@ export {
   userLogoutNotAdmin,
   sendManagerInvitation,
   updateUserAccount,
-  updateUserPassword
+  updateUserPassword,
+  getUserSetting,
+  updateUserSetting
 } from './user/actions/actionCreators';
 
 export {

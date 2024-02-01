@@ -40,8 +40,6 @@
   background: transparent;
   color: white;
   font-weight: 700;
-  font-size: 18px;
-  line-height: 100%;
 }
 
 .menu-item-link.ps-active.ps-menu-button svg path {
@@ -53,15 +51,16 @@
   gap: 8px;
   align-items: center;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 100%;
   color: var(--grey);
 }
 
 .menu-item-link.ps-menu-button {
   border-radius: 8px;
-  margin: 0 24px;
+  margin: 0 20px;
   margin-bottom: 5px;
+  padding: 0 16px !important;
 }
 
 .sidebar-footer {
@@ -70,7 +69,7 @@
 
 @media screen and (max-width: 991px) {
   .menu-item-link.ps-menu-button {
-    margin: 0 8px;
+    margin: 0 8px 5px 8px;
     padding: 0 15px !important;
   }
 }

@@ -6,6 +6,7 @@ import ChangePassword from '../../assets/images/icons/changePassword';
 import Faq from '../../assets/images/icons/faq';
 import Policy from '../../assets/images/icons/policy';
 import PaymentHistory from '../../assets/images/icons/paymenthistory';
+import SpacesIcon from '../../assets/images/icons/Spaces';
 
 const settingRoute = [
   {
@@ -17,6 +18,11 @@ const settingRoute = [
     name: 'Change Password',
     img: <ChangePassword />,
     link: '/settings/changepassword'
+  },
+  {
+    name: 'Space Controls',
+    img: <SpacesIcon />,
+    link: '/settings/controls'
   },
   {
     name: 'FAQs',

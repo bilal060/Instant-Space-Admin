@@ -74,13 +74,15 @@ const TopBar = () => {
   return (
     <Row className="py-3 px-4 m-0 topbar">
       <Col className="logo">
-        <Image fluid className="h-48px " src={LogoImg} loading="lazy" />
+        <Image fluid src={LogoImg} loading="lazy" />
       </Col>
       <Col xs="3" className="logoIcon">
         <Image fluid className="h-48px" src={LogoIcon} loading="lazy" />
       </Col>
       <Col className="d-flex align-items-center justify-content-end">
         <div className="bar-icons">
+          {/* <Link to="/dashboard/notifications">
+          </Link> */}
           <Dropdown show={dropdownOpen} onToggle={toggleDropdown}>
             <Dropdown.Toggle className="top-dropbtn-style" id="dropdown-basic-button">
               <div className="notifiy-dropbtn-style">
@@ -97,19 +99,18 @@ const TopBar = () => {
             <Dropdown.Toggle className="dropbtn-style" id="dropdown-menu-align-end">
               <div className="d-flex justify-content-between align-items-center gap-3">
                 <div className="d-md-block text-end d-none">
-                  <p className="text-18 fw-bold m-0">
+                  <p className="text-16 fw-bold mb-1 text-capitalize">
                     {(isLogin && user && user.fullName) ||
                       (isLogin && user && user.companyName) ||
                       'User Name'}
                   </p>
-                  <p className="text-14 grey font-weight-500 m-0">
+                  <p className="font-12 line-100 grey font-weight-500 m-0">
                     {(isLogin && user && user.role) || 'Role'}
                   </p>
                 </div>
                 <ImageDisplay
                   src={`${process.env.REACT_APP_SERVER_URL}${user.photo}`}
-                  style={{ width: '56px', height: '56px' }}
-                  className="rounded-circle"
+                  className="rounded-circle user-image"
                   loading="lazy"
                 />
               </div>

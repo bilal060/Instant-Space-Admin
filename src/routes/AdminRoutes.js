@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import AdminSpaceControl from '../components/account setting/AdminSpaceControl.js';
 const EditAccount = lazy(() => import('../pages/accounts/EditAccount.js'));
 const Home = lazy(() => import('../pages/Home.js'));
 const Bookings = lazy(() => import('../pages/Bookings.js'));
@@ -69,6 +70,14 @@ function GlobalRoutes() {
           element={
             <AccountSetting>
               <AccountPaymentHistory />
+            </AccountSetting>
+          }
+        />
+        <Route
+          path="/settings/controls"
+          element={
+            <AccountSetting>
+              <AdminSpaceControl />
             </AccountSetting>
           }
         />
