@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import UserReducer from './store/user/reducers/UserReducer';
+import PlanReducer from './store/plan/reducers/PlanReducer';
 import UserEarnings from './store/Earning/reducer/EarningReducer';
 import ChatReducer from './store/chat/reducers/ChatReducer';
 import CategoryReducer from './store/category/reducers/CategoryReducer';
@@ -29,7 +30,8 @@ const rootReducer = combineReducers({
   booking: BookingReducer,
   Earnings: UserEarnings,
   notification: NotificationReducer,
-  socket: SocketReducer
+  socket: SocketReducer,
+  plan: PlanReducer
 });
 
 let devtools, store;

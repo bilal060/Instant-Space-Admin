@@ -5,6 +5,7 @@ const Home = lazy(() => import('../pages/Home.js'));
 const Bookings = lazy(() => import('../pages/Bookings.js'));
 const AllUsers = lazy(() => import('../pages/AllUsers.js'));
 const PaymentHistory = lazy(() => import('../pages/PaymentHistory.js'));
+const Plan = lazy(() => import('../pages/Plan.js'));
 const MyManagers = lazy(() => import('../pages/MyManagers.js'));
 const Notifications = lazy(() => import('../pages/Notifications.js'));
 
@@ -28,6 +29,7 @@ function GlobalRoutes() {
         <Route exact path="/dashboard/users" element={<AllUsers />}></Route>
         <Route exact path="/dashboard/bookings" element={<Bookings />}></Route>
         <Route exact path="/dashboard/payment-history" element={<PaymentHistory />}></Route>
+        <Route exact path="/dashboard/plan" element={<Plan />}></Route>
         <Route exact path="/dashboard/my-managers" element={<MyManagers />}></Route>
         <Route exact path="/dashboard/notifications" element={<Notifications />}></Route>
         <Route

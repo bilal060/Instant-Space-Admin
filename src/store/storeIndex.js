@@ -44,3 +44,4 @@ export {
   getPaginatedNotification
 } from './notification/actions/actionCreators';
 export { setSocket } from './socket/actions/actionCreators';
+export { getPlan } from './plan/actions/actionCreators';

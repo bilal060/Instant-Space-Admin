@@ -60,6 +60,14 @@ const SidebarNav = () => {
           </span>
           All Transactions
         </MenuItem>
+        <MenuItem
+          component={<Link to="/dashboard/plan" className="menu-item-link" />}
+          active={location.pathname === '/dashboard/plan' && true}>
+          <span className="menu-icon">
+            <MessagesIcon />
+          </span>
+          All Plans
+        </MenuItem>
       </Menu>
 
       <Menu className="sidebar-footer">
